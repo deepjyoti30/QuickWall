@@ -18,6 +18,7 @@
 ## How It Works
 
 ### It uses [Unsplash](https://unsplash.com) API to get wallpapers and set them using nitrogen.
+### The images are downloaded to ```~/.QuickWall/``` and then set by nitrogen.
 
 ## Requirements
 
