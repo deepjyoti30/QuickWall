@@ -8,7 +8,8 @@
 2. [How It Works](#how-it-works)
 3. [Requirements](#requirements)
 4. [Installation](#installation)
-5. [Acknowledgements](#acknowledgements)
+5. [TODO](#todo)
+6. [Acknowledgements](#acknowledgements)
 
 ## Philosophy
 
@@ -35,6 +36,11 @@ python setup.py install
 ```
 
 > **NOTE**: If you get **permission denied** error, run the above command with sudo.
+
+## TODO
+
+ - Add a logger
+ - Handle errors better
 
 ## Acknowledgements
 
