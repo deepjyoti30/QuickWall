@@ -47,10 +47,18 @@ class SetPaper:
         c = 'nitrogen --save --set-zoom-fill {}'.format(self._file_path)
         subprocess.Popen(c.split(), stdout=subprocess.PIPE)
 
+    def _is_exists(self):
+        """
+        Check if the wallpaper already exists.
+        """
+        return self._file_path.exists()
+
     def do(self):
         print(self.desc, 'by', self.name)
-        # TODO: Check if the wall already exists before downloading
-        self._dw()
+
+        if not self._is_exists():
+            self._dw()
+
         self._set()
         # Interaction
         ask = input("Save this wallpapers? [Y]es [N]o [E]xit ")
