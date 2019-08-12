@@ -8,8 +8,9 @@
 2. [How It Works](#how-it-works)
 3. [Requirements](#requirements)
 4. [Installation](#installation)
-5. [TODO](#todo)
-6. [Acknowledgements](#acknowledgements)
+5. [Usage](#usage)
+6. [TODO](#todo)
+7. [Acknowledgements](#acknowledgements)
 
 ## Philosophy
 
@@ -37,6 +38,19 @@ python setup.py install
 ```
 
 > **NOTE**: If you get **permission denied** error, run the above command with sudo.
+
+## Usage
+
+Just call by using the following command
+
+```sh
+QuickWall
+```
+
+The version can be checked by
+```sh
+QuickWall --version
+```
 
 ## TODO
 
