@@ -1,7 +1,7 @@
 <h1 align="center">QuickWall</h1>
 
 <div align="center" style="padding-top: 2em; padding-bottom: 2em;">
-    <img src="qw.gif">
+    <img src="qw.gif" style="border-radius: 4px;">
 </div>
 
 1. [Philosophy](#philosophy)
