@@ -1,0 +1,11 @@
+README.md
+setup.py
+QuickWall/SetPaper.py
+QuickWall/__init__.py
+QuickWall/download.py
+QuickWall.egg-info/PKG-INFO
+QuickWall.egg-info/SOURCES.txt
+QuickWall.egg-info/dependency_links.txt
+QuickWall.egg-info/requires.txt
+QuickWall.egg-info/top_level.txt
+scripts/QuickWall
