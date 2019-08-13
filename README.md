@@ -30,6 +30,14 @@
 
 ## Installation
 
+* It is available in Pypi
+
+```sh
+pip3 install QuickWall
+```
+
+### OR
+
 * Run the following command in the root directory to install QuickWall.
 
 ```sh
