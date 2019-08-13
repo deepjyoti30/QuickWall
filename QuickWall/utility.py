@@ -24,6 +24,18 @@ def is_nitrogen():
     return True if err is None else False
 
 
+def is_feh():
+    """
+    Check if feh is installed.
+    """
+    command = "feh --help"
+
+    p = subprocess.Popen(command.split(' '), stdout=subprocess.PIPE)
+    ret, err = p.communicate()
+
+    return True if err is None else False
+
+
 def clear_cache(dir="~/.QuickWall"):
     """
     Clear the cache from the QuickWall dir

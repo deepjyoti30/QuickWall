@@ -1,11 +1,13 @@
 """Functions related to setting the wallpaper."""
 
-import subprocess
-
 from pathlib import Path
 from os import makedirs, remove
+
 from QuickWall.download import download
 from QuickWall.logger import Logger
+from QuickWall.utility import (is_nitrogen, is_feh)
+from QuickWall.nitrogen import nitrogen
+from QuickWall.feh import feh
 
 
 # Declare the logger
@@ -23,6 +25,22 @@ class SetPaper:
         self._file_path = self._dir_path.joinpath(entity['unique_id'] + '.jpg')
         self.desc = entity['desc']
         self.name = entity['name']
+        self.setter_type = ''  # Update by calling the following function
+        self._select_setter()
+
+    def _select_setter(self):
+        """
+        Select the wallpaper setter to be used.
+        """
+        if is_nitrogen():
+            logger.info("Using nitrogen")
+            self.setter_type = nitrogen()
+        elif is_feh():
+            logger.info("Using feh")
+            self.setter_type = feh()
+        else:
+            logger.critical("No wallpaper setter found. Check the\
+                github page for details.")
 
     def _dw(self):
         """
@@ -34,23 +52,19 @@ class SetPaper:
         """
         Restore the wallpaper.
         """
-        logger.info("Restoring the last wallpaper...")
-        c = 'nitrogen --restore'
-        subprocess.Popen(c.split(), stdout=subprocess.PIPE)
+        self.setter_type.restore()
 
     def _set(self):
         """
         Set the wallpaper.
         """
-        c = 'nitrogen --set-zoom-fill {}'.format(self._file_path)
-        p = subprocess.Popen(c.split(' '), stdout=subprocess.PIPE)
-        ret, err = p.communicate()
-
-        # Handle if error thrown
+        self.setter_type.set(self._file_path)
 
     def _set_perma(self):
-        c = 'nitrogen --save --set-zoom-fill {}'.format(self._file_path)
-        subprocess.Popen(c.split(), stdout=subprocess.PIPE)
+        """
+        Set the wallpaper permanently
+        """
+        self.setter_type.set_perm(self._file_path)
 
     def _is_exists(self):
         """
@@ -74,4 +88,5 @@ class SetPaper:
             self._restore()
             exit()
         else:
+            self._restore
             remove(self._file_path)

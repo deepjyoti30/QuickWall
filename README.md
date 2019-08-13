@@ -24,7 +24,10 @@
 ## Requirements
 
 1. Python 3.4+
-2. [nitrogen](https://github.com/l3ib/nitrogen)
+2. Currently supported wallpaper setters
+
+    - [nitrogen](https://github.com/l3ib/nitrogen)
+    - [feh](https://github.com/derf/feh)
 
 > **NOTE**: These dependencies in linux can be installed in other variants.  
 > For *arch linux*, you can use **pacman** package manager accordingly.
@@ -60,6 +63,7 @@ optional arguments:
 ## TODO
 
  - ~~Add a logger~~
+ - Add support for different wallpaper setters
  - Handle errors better
 
 ## Acknowledgements

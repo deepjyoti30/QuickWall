@@ -94,10 +94,6 @@ def main():
         clear_cache()
         exit(0)
 
-    # Check if nitrogen is installed
-    if not is_nitrogen():
-        logger.critical("Nitrogen not installed, check the github page to install it.")
-
     wall = Wall()
     logger.info("Gettting the wallpapers using Unsplash API...")
     paper_list = wall.get_list()
