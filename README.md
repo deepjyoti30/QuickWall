@@ -4,17 +4,13 @@
     <img src="qw.gif" style="border-radius: 4px !important;">
 </div>
 
-1. [Philosophy](#philosophy)
-2. [How It Works](#how-it-works)
-3. [Requirements](#requirements)
-4. [Installation](#installation)
-5. [Usage](#usage)
-6. [TODO](#todo)
-7. [Acknowledgements](#acknowledgements)
 
-## Philosophy
-
-### Set latest wallpaper from Unsplash directly from the commandline.
+1. [How It Works](#how-it-works)
+2. [Requirements](#requirements)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [TODO](#todo)
+6. [Acknowledgements](#acknowledgements)
 
 ## How It Works
 
