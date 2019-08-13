@@ -18,35 +18,17 @@ class SetPaper:
     """
     Download the wallpaper and set it using nitrogen.
     """
-    def __init__(self, entity):
-        self._url = entity['dw_link']
+    def __init__(self, entity_list, setter):
+        self.entity_list = entity_list
         self._dir_path = Path('~/.QuickWall').expanduser()
         makedirs(self._dir_path, exist_ok=True)
-        self._file_path = self._dir_path.joinpath(entity['unique_id'] + '.jpg')
-        self.desc = entity['desc']
-        self.name = entity['name']
-        self.setter_type = ''  # Update by calling the following function
-        self._select_setter()
+        self.setter_type = setter  # Update by calling the following function
 
-    def _select_setter(self):
-        """
-        Select the wallpaper setter to be used.
-        """
-        if is_nitrogen():
-            logger.info("Using nitrogen")
-            self.setter_type = nitrogen()
-        elif is_feh():
-            logger.info("Using feh")
-            self.setter_type = feh()
-        else:
-            logger.critical("No wallpaper setter found. Check the\
-                github page for details.")
-
-    def _dw(self):
+    def _dw(self, url):
         """
         Download the file using a download manager.
         """
-        download(self._url, self._file_path)
+        download(url, self._file_path)
 
     def _restore(self):
         """
@@ -73,20 +55,24 @@ class SetPaper:
         return self._file_path.exists()
 
     def do(self):
-        logger.info("{} by {}".format(self.desc, self.name))
+        for entity in self.entity_list:
+            self.desc = entity['desc']
+            self.name = entity['name']
+            self._file_path = self._dir_path.joinpath('{}.jpg'.format(entity['unique_id']))
+            logger.info("{} by {}".format(self.desc, self.name))
 
-        if not self._is_exists():
-            self._dw()
+            if not self._is_exists():
+                self._dw(entity['dw_link'])
 
-        self._set()
-        # Interaction
-        ask = input("Save this wallpapers? [Y]es [N]o [E]xit ")
-        if ask.lower() == 'y':
-            self._set_perma()
-            exit()
-        elif ask.lower() == 'e':
-            self._restore()
-            exit()
-        else:
-            self._restore
-            remove(self._file_path)
+            self._set()
+            # Interaction
+            ask = input("Save this wallpapers? [Y]es [N]o [E]xit ")
+            if ask.lower() == 'y':
+                self._set_perma()
+                exit()
+            elif ask.lower() == 'e':
+                self._restore()
+                exit()
+            else:
+                self._restore
+                remove(self._file_path)

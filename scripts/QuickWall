@@ -7,6 +7,7 @@ import argparse
 from QuickWall.SetPaper import SetPaper
 from QuickWall.utility import (is_nitrogen, clear_cache)
 from QuickWall.logger import Logger
+from QuickWall.setter import WallSetter
 
 
 # Declare the logger
@@ -22,6 +23,9 @@ def parse():
                         help='show the program version number and exit')
     parser.add_argument('--clear-cache', help="Clear the cache from the\
                         cache folder (~/.QuickWall)", action='store_true')
+    parser.add_argument('--setter', help="Wallpaper setter to be used.\
+                        Currently supported ones: nitrogen, feh  (default: nitrogen)",
+                        type=str, default="nitrogen")
 
     args = parser.parse_args()
 
@@ -94,13 +98,16 @@ def main():
         clear_cache()
         exit(0)
 
+    # Get the wallpaper setter
+    wall_setter = WallSetter(args.setter)
+    setter = wall_setter.get_setter()
+
     wall = Wall()
     logger.info("Gettting the wallpapers using Unsplash API...")
     paper_list = wall.get_list()
 
-    for paper in paper_list:
-        set_paper = SetPaper(paper)
-        set_paper.do()
+    set_paper = SetPaper(paper_list, setter)
+    set_paper.do()
 
 
 if __name__ == '__main__':
