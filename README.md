@@ -41,15 +41,20 @@ python setup.py install
 
 ## Usage
 
-Just call by using the following command
 
-```sh
-QuickWall
 ```
 
-The version can be checked by
-```sh
-QuickWall --version
+usage: QuickWall [-h] [--version] [--clear-cache]
+
+QuickWall - Quickly set latest wallpapers from Unsplash directly from the
+commandline.
+
+optional arguments:
+  -h, --help     show this help message and exit
+  --version      show the program version number and exit
+  --clear-cache  Clear the cache from the cache folder (~/.QuickWall)
+
+
 ```
 
 ## TODO

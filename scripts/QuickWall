@@ -5,7 +5,7 @@ import requests
 import argparse
 
 from QuickWall.SetPaper import SetPaper
-from QuickWall.utility import is_nitrogen
+from QuickWall.utility import (is_nitrogen, clear_cache)
 from QuickWall.logger import Logger
 
 
@@ -15,11 +15,13 @@ logger = Logger("main")
 
 def parse():
     """Parse the arguments."""
-    parser = argparse.ArgumentParser(description="QuickWall - Set wallpaper\
-                                    directly from the commandline using\
-                                    Unsplash API.")
+    parser = argparse.ArgumentParser(description="QuickWall - Quickly set\
+                                     latest wallpapers from Unsplash\
+                                     directly from the commandline.")
     parser.add_argument('--version', action='version', version='0.0.1',
                         help='show the program version number and exit')
+    parser.add_argument('--clear-cache', help="Clear the cache from the\
+                        cache folder (~/.QuickWall)", action='store_true')
 
     args = parser.parse_args()
 
@@ -87,6 +89,10 @@ class Wall:
 def main():
     # Parse the arguments
     args = parse()
+
+    if args.clear_cache:
+        clear_cache()
+        exit(0)
 
     # Check if nitrogen is installed
     if not is_nitrogen():
