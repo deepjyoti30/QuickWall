@@ -5,6 +5,12 @@ import requests
 import argparse
 
 from QuickWall.SetPaper import SetPaper
+from QuickWall.utility import is_nitrogen
+from QuickWall.logger import Logger
+
+
+# Declare the logger
+logger = Logger("main")
 
 
 def parse():
@@ -32,7 +38,7 @@ class Wall:
     unique_id: ID to save the image
     """
     def __init__(self):
-        self._acces_key = "3ec57b308df2a2085e7ae10d8a3bfab3c6d1cae15768ffea73614fd4a8989ad3"
+        self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
         self._URL = 'https://api.unsplash.com/photos/?client_id={}&per_page=30'.format(self._acces_key)
         self._URL_list = []
 
@@ -42,6 +48,7 @@ class Wall:
         the list.
         """
 
+        logger.debug(entity)
         desc = entity['description']
         if desc is None:
             desc = entity['alt_description']
@@ -80,8 +87,13 @@ class Wall:
 def main():
     # Parse the arguments
     args = parse()
+
+    # Check if nitrogen is installed
+    if not is_nitrogen():
+        logger.critical("Nitrogen not installed, check the github page to install it.")
+
     wall = Wall()
-    print("Gettting the wallpapers using Unsplash API...")
+    logger.info("Gettting the wallpapers using Unsplash API...")
     paper_list = wall.get_list()
 
     for paper in paper_list:

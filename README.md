@@ -54,7 +54,7 @@ QuickWall --version
 
 ## TODO
 
- - Add a logger
+ - ~~Add a logger~~
  - Handle errors better
 
 ## Acknowledgements

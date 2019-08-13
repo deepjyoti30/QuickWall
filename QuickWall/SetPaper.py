@@ -5,6 +5,11 @@ import subprocess
 from pathlib import Path
 from os import makedirs, remove
 from QuickWall.download import download
+from QuickWall.logger import Logger
+
+
+# Declare the logger
+logger = Logger("SetPaper")
 
 
 class SetPaper:
@@ -29,7 +34,7 @@ class SetPaper:
         """
         Restore the wallpaper.
         """
-        print("Restoring the last wallpaper...")
+        logger.info("Restoring the last wallpaper...")
         c = 'nitrogen --restore'
         subprocess.Popen(c.split(), stdout=subprocess.PIPE)
 
@@ -54,7 +59,7 @@ class SetPaper:
         return self._file_path.exists()
 
     def do(self):
-        print(self.desc, 'by', self.name)
+        logger.info("{} by {}".format(self.desc, self.name))
 
         if not self._is_exists():
             self._dw()
