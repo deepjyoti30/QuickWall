@@ -5,9 +5,7 @@ from os import makedirs, remove
 
 from QuickWall.download import download
 from QuickWall.logger import Logger
-from QuickWall.utility import (is_nitrogen, is_feh)
-from QuickWall.nitrogen import nitrogen
-from QuickWall.feh import feh
+from QuickWall.blacklist import Blacklist
 
 
 # Declare the logger
@@ -56,6 +54,12 @@ class SetPaper:
 
     def do(self):
         for entity in self.entity_list:
+            # Check if blacklisted. If yes, skip to next paper
+            blacklist = Blacklist(entity['unique_id'])
+            if blacklist.is_blacklisted():
+                logger.debug("Found in blacklisted ones")
+                continue
+
             self.desc = entity['desc']
             self.name = entity['name']
             self._file_path = self._dir_path.joinpath('{}.jpg'.format(entity['unique_id']))
@@ -71,8 +75,11 @@ class SetPaper:
                 self._set_perma()
                 exit()
             elif ask.lower() == 'e':
+                remove(self._file_path)
+                blacklist.add_blacklist()
                 self._restore()
                 exit()
             else:
+                blacklist.add_blacklist()
                 self._restore
                 remove(self._file_path)

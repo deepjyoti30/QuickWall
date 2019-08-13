@@ -6,5 +6,6 @@ __all__ = ['download',
            'nitrogen',
            'feh',
            'setter',
+           'blacklist',
            'SetPaper'
           ]

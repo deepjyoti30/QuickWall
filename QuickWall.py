@@ -19,7 +19,7 @@ def parse():
     parser = argparse.ArgumentParser(description="QuickWall - Quickly set\
                                      latest wallpapers from Unsplash\
                                      directly from the commandline.")
-    parser.add_argument('--version', action='version', version='0.0.1-1',
+    parser.add_argument('--version', action='version', version='0.0.1-2',
                         help='show the program version number and exit')
     parser.add_argument('--clear-cache', help="Clear the cache from the\
                         cache folder (~/.QuickWall)", action='store_true')
