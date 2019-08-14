@@ -16,11 +16,21 @@ class SetPaper:
     """
     Download the wallpaper and set it using nitrogen.
     """
-    def __init__(self, entity_list, setter):
+    def __init__(self, entity_list, setter, passed_dir="~/.QuickWall"):
         self.entity_list = entity_list
-        self._dir_path = Path('~/.QuickWall').expanduser()
+        self._dir_path = Path(passed_dir).expanduser()
+        self._exists()
         makedirs(self._dir_path, exist_ok=True)
         self.setter_type = setter  # Update by calling the following function
+
+    def _exists(self):
+        """
+        Check if the dir exists, if it doesn't raise an error.
+        """
+        if not self._dir_path.exists():
+            logger.critical("Passed dir does not exist. Quitting!")
+        else:
+            logger.info("Saving images to {}".format(self._dir_path))
 
     def _dw(self, url):
         """
