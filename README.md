@@ -52,6 +52,7 @@ python setup.py install
 ```
 
 usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER]
+                 [--dir DIR]
 
 QuickWall - Quickly set latest wallpapers from Unsplash directly from the
 commandline.
@@ -62,6 +63,7 @@ optional arguments:
   --clear-cache    Clear the cache from the cache folder (~/.QuickWall)
   --setter SETTER  Wallpaper setter to be used. Currently supported ones:
                    nitrogen, feh (default: nitrogen)
+  --dir DIR        Directory to download the wallpapers
 
 
 ```
