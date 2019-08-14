@@ -19,7 +19,7 @@
 
 ## Requirements
 
-1. Python 3.4+
+1. Python 3.6+
 2. Currently supported wallpaper setters
 
     - [nitrogen](https://github.com/l3ib/nitrogen)
