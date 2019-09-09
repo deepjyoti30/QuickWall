@@ -1,11 +1,12 @@
 <h1 align="center">QuickWall</h1>
 
 <div align="center" style="padding-top: 2em !important; padding-bottom: 2em; !important">
-    <img src="qw.gif" style="border-radius: 4px !important;"><br/>
+    <img src="qw.gif" style="border-radius: 4px !important;">
 </div>
 
 
 <div align="center">
+<br/>
 
 <a href="#how-it-works">How It Works</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#to-do">TODO</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#acknowledgements">Acknowledgements</a>&nbsp;&nbsp;&nbsp;
 <br/><br/>
