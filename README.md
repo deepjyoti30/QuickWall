@@ -1,7 +1,7 @@
 <h1 align="center">QuickWall</h1>
 
 <div align="center" style="padding-top: 2em !important; padding-bottom: 2em; !important">
-    <img src="qw.gif" style="border-radius: 4px !important;">
+    <img src="qw.gif" style="border-radius: 4px !important;"><br/>
 </div>
 
 
