@@ -8,6 +8,8 @@ from QuickWall.SetPaper import SetPaper
 from QuickWall.utility import (is_nitrogen, clear_cache)
 from QuickWall.logger import Logger
 from QuickWall.setter import WallSetter
+from QuickWall import search
+from QuickWall import basic
 
 
 # Declare the logger
@@ -28,7 +30,7 @@ def parse():
                         type=str, default="nitrogen")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
                         type=str, default=None)
-
+    parser.add_argument('--search', help="Search", action='store_true')
     args = parser.parse_args()
 
     return args
@@ -103,7 +105,11 @@ def main():
     wall_setter = WallSetter(args.setter)
     setter = wall_setter.get_setter()
 
-    wall = Wall()
+    if args.search:
+        wall=search.Wall()
+    else:
+        wall=basic.Wall()
+
     logger.info("Gettting the wallpapers using Unsplash API...")
     paper_list = wall.get_list()
 
