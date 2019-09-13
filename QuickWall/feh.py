@@ -19,8 +19,8 @@ class feh:
         """
         Extract the current wall path.
         """
-        logger.debug()
-        return open(self.feh_config_path).read().split(' ')[-1]
+        logger.debug("{}".format(open(self.feh_config_path).read().split(' ')[-2]))
+        return open(self.feh_config_path).read().split(' ')[-2]
 
     def restore(self):
         """
