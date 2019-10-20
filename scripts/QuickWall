@@ -45,16 +45,16 @@ class Wall:
     unique_id: ID to save the image
     """
     def __init__(self):
-        self.s_name = None
+        self.s_term = None
         self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
         self._URL = 'https://api.unsplash.com/photos/?client_id={}&per_page=30'.format(self._acces_key)
         self._URL_list = []
 
     def search(self, name):
-        self.s_name = name
-        self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
-        self._URL = 'https://api.unsplash.com/search/photos/?query={}&client_id={}&per_page=30'.format(self.s_name, self._acces_key)
-        self._URL_list = []
+        # Update the URL
+        self.s_term = name
+        logger.info("Searching for {}".format(name))
+        self._URL = 'https://api.unsplash.com/search/photos/?query={}&client_id={}&per_page=30'.format(name, self._acces_key)
 
     def _add_to_list(self, entity):
         """
@@ -88,7 +88,7 @@ class Wall:
         """
         response = requests.get(self._URL)
         json_data = response.json()
-        if self.s_name != None:
+        if self.s_term != None:
             json_data = json_data['results']
         for i in json_data:
             self._add_to_list(i)
