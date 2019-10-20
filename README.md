@@ -75,6 +75,7 @@ optional arguments:
 ## TODO
 
  - ~~Add a logger~~
+ - ~~Add support to search~~
  - Add support for different wallpaper setters (raise an issue if you want me to support some particular one)
  - Handle errors better
 
