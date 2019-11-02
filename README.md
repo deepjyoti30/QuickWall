@@ -52,7 +52,7 @@ python setup.py install
 
 ## Usage
 
-```sh
+```console
 
 usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER]
                  [--dir DIR] [--random] [--search TERM]
