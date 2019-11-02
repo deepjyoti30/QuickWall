@@ -16,12 +16,18 @@ class SetPaper:
     """
     Download the wallpaper and set it using nitrogen.
     """
-    def __init__(self, entity_list, setter, passed_dir="~/.QuickWall"):
+    def __init__(
+                    self,
+                    entity_list,
+                    setter, passed_dir="~/.QuickWall",
+                    disable_blacklist=False
+                ):
         self.entity_list = entity_list
         self._dir_path = Path(passed_dir).expanduser()
         self._exists()
         makedirs(self._dir_path, exist_ok=True)
         self.setter_type = setter  # Update by calling the following function
+        self.disable_blacklist = disable_blacklist
 
     def _exists(self):
         """
@@ -62,6 +68,10 @@ class SetPaper:
         """
         return self._file_path.exists()
 
+    def _blacklist(self, blacklist_obj):
+        if not self.disable_blacklist:
+            blacklist_obj.add_blacklist()
+
     def do(self):
         for entity in self.entity_list:
             # Check if blacklisted. If yes, skip to next paper
@@ -86,10 +96,10 @@ class SetPaper:
                 exit()
             elif ask.lower() == 'e':
                 remove(self._file_path)
-                blacklist.add_blacklist()
+                self._blacklist(blacklist)
                 self._restore()
                 exit()
-            else:
-                blacklist.add_blacklist()
-                self._restore
+            elif ask.lower() == 'n':
+                self._blacklist(blacklist)
+                self._restore()
                 remove(self._file_path)

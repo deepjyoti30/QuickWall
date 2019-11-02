@@ -26,6 +26,8 @@ def parse():
     parser.add_argument('--setter', help="Wallpaper setter to be used.\
                         Currently supported ones: nitrogen, feh  (default: nitrogen)",
                         type=str, default="nitrogen")
+    parser.add_argument('-d', '--disable-blacklist', help="Disable adding the\
+                        image to blacklisted ones.", action="store_true")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
                         type=str, default=None)
     parser.add_argument('--id', help="Get a photo by its ID.",
@@ -60,7 +62,7 @@ def main():
     if args.dir is None:
         args.dir = "~/.QuickWall"
 
-    set_paper = SetPaper(paper_list, setter, args.dir)
+    set_paper = SetPaper(paper_list, setter, args.dir, args.disable_blacklist)
     set_paper.do()
 
 
