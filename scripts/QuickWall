@@ -56,7 +56,7 @@ class Wall:
                 search=None
             ):
         self.s_term = None
-        self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
+        self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f"
         self._URL = "https://api.unsplash.com/photos/"
         self._URL_list = []
         self.random = random
@@ -116,6 +116,10 @@ class Wall:
         Return a iterable list of direct download URL's.
         """
         response = requests.get(self._URL, params=self.params)
+
+        if response.status_code != 200:
+            logger.critical("ERROR: {}".format(response.reason))
+
         json_data = response.json()
 
         if type(json_data) == dict:
