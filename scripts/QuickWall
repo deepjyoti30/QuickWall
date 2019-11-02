@@ -27,7 +27,8 @@ def parse():
                         type=str, default="nitrogen")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
                         type=str, default=None)
-    parser.add_argument('--search', help="Search", type=str)
+    parser.add_argument('--search', help="Show wallpapers based on the\
+                        passed term", type=str, metavar="TERM")
     args = parser.parse_args()
 
     return args
