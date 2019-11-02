@@ -27,6 +27,8 @@ def parse():
                         type=str, default="nitrogen")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
                         type=str, default=None)
+    parser.add_argument('--id', help="Get a photo by its ID.",
+                        type=str, default=None, metavar="ID")
     parser.add_argument('--random', help="Get random wallpapers.",
                         action="store_true")
     parser.add_argument('--search', help="Show wallpapers based on the\
@@ -47,13 +49,19 @@ class Wall:
     dw_link: Download link of the image
     unique_id: ID to save the image
     """
-    def __init__(self, random=None, search=None):
+    def __init__(
+                self,
+                photo_id,
+                random=None,
+                search=None
+            ):
         self.s_term = None
         self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
         self._URL = "https://api.unsplash.com/photos/"
         self._URL_list = []
         self.random = random
         self.search = search
+        self.id = photo_id
         self._build_URL()
 
     def _build_URL(self):
@@ -62,7 +70,12 @@ class Wall:
         self.params = {
                     'client_id': self._acces_key,
                     'per_page' : 30, 
-                }
+                    }
+        
+        if self.id:
+            logger.info("Adding ID to URL")
+            self._URL += self.id
+            return
 
         if self.random:
             logger.info("Adding random to URL")
@@ -105,8 +118,11 @@ class Wall:
         response = requests.get(self._URL, params=self.params)
         json_data = response.json()
 
-        for i in json_data:
-            self._add_to_list(i)
+        if type(json_data) == dict:
+            self._add_to_list(json_data)
+        else:
+            for i in json_data:
+                self._add_to_list(i)
 
     def get_list(self):
         self._get_paper()
@@ -121,7 +137,7 @@ def main():
         clear_cache()
         exit(0)
     
-    wall = Wall(random=args.random, search=args.search)
+    wall = Wall(photo_id=args.id, random=args.random, search=args.search)
 
     # Get the wallpaper setter
     wall_setter = WallSetter(args.setter)

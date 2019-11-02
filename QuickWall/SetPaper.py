@@ -67,7 +67,7 @@ class SetPaper:
             # Check if blacklisted. If yes, skip to next paper
             blacklist = Blacklist(entity['unique_id'])
             if blacklist.is_blacklisted():
-                logger.debug("Found in blacklisted ones")
+                logger.info("Found in blacklisted ones")
                 continue
 
             self.desc = entity['desc']
