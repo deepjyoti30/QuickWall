@@ -54,22 +54,26 @@ python setup.py install
 
 ```console
 
-usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER]
-                 [--dir DIR] [--id ID] [--random] [--search TERM]
+usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER] [-d]
+                 [--remove-id ID] [--dir DIR] [--id ID] [--random]
+                 [--search TERM]
 
 QuickWall - Quickly set latest wallpapers from Unsplash directly from the
 commandline.
 
 optional arguments:
-  -h, --help       show this help message and exit
-  --version        show the program version number and exit
-  --clear-cache    Clear the cache from the cache folder (~/.QuickWall)
-  --setter SETTER  Wallpaper setter to be used. Currently supported ones:
-                   nitrogen, feh (default: nitrogen)
-  --dir DIR        Directory to download the wallpapers
-  --id ID          Get a photo by its ID.
-  --random         Get random wallpapers.
-  --search TERM    Show wallpapers based on the passed term
+  -h, --help            show this help message and exit
+  --version             show the program version number and exit
+  --clear-cache         Clear the cache from the cache folder (~/.QuickWall)
+  --setter SETTER       Wallpaper setter to be used. Currently supported ones:
+                        nitrogen, feh (default: nitrogen)
+  -d, --disable-blacklist
+                        Disable adding the image to blacklisted ones.
+  --remove-id ID        Remove the passed ID from the blacklist.
+  --dir DIR             Directory to download the wallpapers
+  --id ID               Get a photo by its ID.
+  --random              Get random wallpapers.
+  --search TERM         Show wallpapers based on the passed term
 
 ```
 
