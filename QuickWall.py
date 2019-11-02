@@ -50,23 +50,15 @@ class Wall:
     def __init__(self, random=None, search=None):
         self.s_term = None
         self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
-        self._base_URL = "https://api.unsplash.com/photos/"
-        self._URL = 'https://api.unsplash.com/photos/?client_id={}&per_page=30'.format(self._acces_key)
+        self._URL = "https://api.unsplash.com/photos/"
         self._URL_list = []
         self.random = random
         self.search = search
         self._build_URL()
 
-    def search(self, name):
-        # Update the URL
-        self.s_term = name
-        logger.info("Searching for {}".format(name))
-        self._URL = 'https://api.unsplash.com/search/photos/?query={}&client_id={}&per_page=30'.format(name, self._acces_key)
-
     def _build_URL(self):
         """Build the URL based on the passed args."""
 
-        self._URL = self._base_URL
         self.params = {
                     'client_id': self._acces_key,
                     'per_page' : 30, 
