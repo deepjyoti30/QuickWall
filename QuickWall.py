@@ -27,7 +27,10 @@ def parse():
                         type=str, default="nitrogen")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
                         type=str, default=None)
-    parser.add_argument('--search', help="Search", type=str)
+    parser.add_argument('--random', help="Get random wallpapers.",
+                        action="store_true")
+    parser.add_argument('--search', help="Show wallpapers based on the\
+                        passed term", type=str, metavar="TERM")
     args = parser.parse_args()
 
     return args
@@ -44,17 +47,38 @@ class Wall:
     dw_link: Download link of the image
     unique_id: ID to save the image
     """
-    def __init__(self):
+    def __init__(self, random=None, search=None):
         self.s_term = None
         self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
+        self._base_URL = "https://api.unsplash.com/photos/"
         self._URL = 'https://api.unsplash.com/photos/?client_id={}&per_page=30'.format(self._acces_key)
         self._URL_list = []
+        self.random = random
+        self.search = search
+        self._build_URL()
 
     def search(self, name):
         # Update the URL
         self.s_term = name
         logger.info("Searching for {}".format(name))
         self._URL = 'https://api.unsplash.com/search/photos/?query={}&client_id={}&per_page=30'.format(name, self._acces_key)
+
+    def _build_URL(self):
+        """Build the URL based on the passed args."""
+
+        self._URL = self._base_URL
+        self.params = {
+                    'client_id': self._acces_key,
+                    'per_page' : 30, 
+                }
+
+        if self.random:
+            logger.info("Adding random to URL")
+            self._URL += "random/"
+            self.params['count'] = self.params.pop('per_page')
+        if self.search:
+            logger.info("Adding search term [{}] to URL".format(self.search))
+            self.params.update({'query': self.search})
 
     def _add_to_list(self, entity):
         """
@@ -86,10 +110,9 @@ class Wall:
 
         Return a iterable list of direct download URL's.
         """
-        response = requests.get(self._URL)
+        response = requests.get(self._URL, params=self.params)
         json_data = response.json()
-        if self.s_term != None:
-            json_data = json_data['results']
+
         for i in json_data:
             self._add_to_list(i)
 
@@ -106,14 +129,11 @@ def main():
         clear_cache()
         exit(0)
     
-    wall = Wall()
+    wall = Wall(random=args.random, search=args.search)
 
     # Get the wallpaper setter
     wall_setter = WallSetter(args.setter)
     setter = wall_setter.get_setter()
-    
-    if args.search:
-        wall.search(args.search)
 
     logger.info("Getting the wallpapers using Unsplash API...")
     paper_list = wall.get_list()
