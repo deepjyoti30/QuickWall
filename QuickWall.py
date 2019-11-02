@@ -10,6 +10,8 @@ from QuickWall.logger import Logger
 from QuickWall.setter import WallSetter
 from QuickWall.wall import Wall
 
+from QuickWall.blacklist import Blacklist
+
 # Declare the logger
 logger = Logger("main")
 
@@ -28,6 +30,8 @@ def parse():
                         type=str, default="nitrogen")
     parser.add_argument('-d', '--disable-blacklist', help="Disable adding the\
                         image to blacklisted ones.", action="store_true")
+    parser.add_argument('--remove-id', help="Remove the passed ID\
+                        from the blacklist.", default=None, type=str, metavar="ID")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
                         type=str, default=None)
     parser.add_argument('--id', help="Get a photo by its ID.",
@@ -47,6 +51,10 @@ def main():
 
     if args.clear_cache:
         clear_cache()
+        exit(0)
+
+    if args.remove_id:
+        blacklist = Blacklist(args.remove_id).remove_blacklist()
         exit(0)
     
     wall = Wall(photo_id=args.id, random=args.random, search=args.search)

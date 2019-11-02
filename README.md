@@ -75,6 +75,7 @@ optional arguments:
 
 ## TODO
 
+- Add tests
 - Add support for different wallpaper setters (raise an issue if you want me to support some particular one)
 - Handle errors better
 - ~~Add a logger~~
