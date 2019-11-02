@@ -43,3 +43,20 @@ class Blacklist:
         WRITESTREAM = open(self.blacklist_path, 'a+')
         WRITESTREAM.write('\n{}'.format(self.unique_id))
         logger.info("{} added to blacklist".format(self.unique_id))
+
+    def remove_blacklist(self):
+        """Remove the passed id from the file."""
+        if not self.blacklist_path.exists():
+            return
+
+        black_list = open(self.blacklist_path, 'r').read()
+        black_list = black_list.split('\n')
+
+        if self.unique_id in black_list:
+            black_list.remove(self.unique_id)
+            logger.info("Removed {} from the blacklist".format(self.unique_id))
+        else:
+            logger.critical("[{}] not available in the blacklist.".format(self.unique_id))
+
+        black_list = '\n'.join(black_list)
+        open(self.blacklist_path, 'w').write(black_list)
