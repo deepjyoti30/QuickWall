@@ -40,6 +40,12 @@
 pip3 install QuickWall
 ```
 
+* Available in AUR
+
+```sh
+yaourt -S python-quickwall
+```
+
 ### OR
 
 * Run the following command in the root directory to install QuickWall.
