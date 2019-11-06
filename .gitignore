@@ -6,3 +6,4 @@ __pycache__
 PKGBUILD
 master
 .vscode/*
+python-quickwall/*
