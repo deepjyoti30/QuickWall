@@ -20,7 +20,10 @@ def parse():
     """Parse the arguments."""
     parser = argparse.ArgumentParser(description="QuickWall - Quickly set\
                                      latest wallpapers from Unsplash\
-                                     directly from the commandline.")
+                                     directly from the commandline.",
+                                     epilog="If you find any bugs, feel\
+                                     free to raise an issue in the GitHub\
+                                     [https://deepjyoti30/QuickWall] page.")
     parser.add_argument('--version', action='version', version='0.0.1-3',
                         help='show the program version number and exit')
     parser.add_argument('--clear-cache', help="Clear the cache from the\
@@ -75,4 +78,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        logger.info("Keyboard Interrupt passed. Exiting..!")
