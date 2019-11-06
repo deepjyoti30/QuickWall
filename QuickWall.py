@@ -23,7 +23,7 @@ def parse():
                                      directly from the commandline.",
                                      epilog="If you find any bugs, feel\
                                      free to raise an issue in the GitHub\
-                                     [https://deepjyoti30/QuickWall] page.")
+                                     [https://github.com/deepjyoti30/QuickWall] page.")
     parser.add_argument('--version', action='version', version='0.0.1-3',
                         help='show the program version number and exit')
     parser.add_argument('--clear-cache', help="Clear the cache from the\
