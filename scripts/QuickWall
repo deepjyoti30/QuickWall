@@ -75,7 +75,4 @@ def main():
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except KeyboardInterrupt:
-        logger.info("Keyboard Interrupt passed. Exiting..!")
+    main()
