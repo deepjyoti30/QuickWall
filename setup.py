@@ -7,9 +7,9 @@ setup(
     author_email='deep.barman30@gmail.com',
     description='Set any wallpaper from commandline',
     long_description='Set any wallpaper from Unsplash from the commandline',
-    url='http://github.com/deepjyoti30/quickwall',
+    url='http://github.com/deepjyoti30/QuickWall',
     scripts=['scripts/QuickWall'],
-    version='0.0.1-3',
+    version='0.0.1-4',
     license='MIT',
     install_requires=['requests'],
 )
