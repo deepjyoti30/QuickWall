@@ -40,10 +40,10 @@
 pip3 install QuickWall
 ```
 
-* Available in AUR [here](https://aur.archlinux.org/packages/python-quickwall/)
+* Available in AUR [here](https://aur.archlinux.org/packages/quickwall/)
 
 ```sh
-yay -S python-quickwall
+yay -S quickwall
 ```
 
 ### OR
