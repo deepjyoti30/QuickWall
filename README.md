@@ -8,7 +8,7 @@
 <div align="center">
 <br/>
 
-<a href="#how-it-works">How It Works</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#to-do">TODO</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#acknowledgements">Acknowledgements</a>&nbsp;&nbsp;&nbsp;
+<a href="#how-it-works">How It Works</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#to-do">TODO</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#acknowledgements">Acknowledgements</a>&nbsp;&nbsp;&nbsp;
 <br/><br/>
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)<br/><br/>
@@ -19,18 +19,9 @@
 ## How It Works
 
 ### It uses [Unsplash](https://unsplash.com) API to get wallpapers and set them using nitrogen.
-### The images are downloaded to ```~/.QuickWall/``` and then set by nitrogen.
+### The images are downloaded to ```~/.cache/QuickWall/``` and then set by nitrogen.
 
-## Requirements
-
-1. Python 3.6+
-2. Currently supported wallpaper setters
-
-    - [nitrogen](https://github.com/l3ib/nitrogen)
-    - [feh](https://github.com/derf/feh)
-
-> **NOTE**: These dependencies in linux can be installed in other variants.  
-> For *arch linux*, you can use **pacman** package manager accordingly.
+> **NOTE**: The directory is changed from ```~/.QuickWall``` to ```~/.cache/QuickWall```. Early users can use ```--migrate``` option to move their data.
 
 ## Installation
 
@@ -55,6 +46,17 @@ python setup.py install
 ```
 
 > **NOTE**: If you get **permission denied** error, run the above command with sudo.
+
+## Requirements
+
+1. Python 3.6+
+2. Currently supported wallpaper setters
+
+    - [nitrogen](https://github.com/l3ib/nitrogen)
+    - [feh](https://github.com/derf/feh)
+
+> **NOTE**: These dependencies in linux can be installed in other variants.  
+> For *arch linux*, you can use **pacman** package manager accordingly.
 
 ## Usage
 
