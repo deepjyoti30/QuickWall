@@ -70,7 +70,8 @@ commandline.
 optional arguments:
   -h, --help            show this help message and exit
   --version             show the program version number and exit
-  --clear-cache         Clear the cache from the cache folder (~/.QuickWall)
+  --clear-cache         Clear the cache from the cache folder
+                        (~/.cache/QuickWall)
   --setter SETTER       Wallpaper setter to be used. Currently supported ones:
                         nitrogen, feh (default: nitrogen)
   -d, --disable-blacklist
@@ -80,8 +81,8 @@ optional arguments:
   --id ID               Get a photo by its ID.
   --random              Get random wallpapers.
   --search TERM         Show wallpapers based on the passed term
-  --migrate             ONLY FOR EARLY USERS | Move the files from
-                        ~/.QuickWall to /.cache/QuickWall.
+  --migrate             ONLY FOR EARLY USERS. Move the files from ~/.QuickWall
+                        to ~/.cache/QuickWall.
 
 If you find any bugs, feel free to raise an issue in the GitHub
 [https://github.com/deepjyoti30/QuickWall] page.
