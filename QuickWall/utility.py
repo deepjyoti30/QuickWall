@@ -3,8 +3,9 @@
 import subprocess
 
 from pathlib import Path
-from shutil import rmtree, move
-from os import mkdir
+from shutil import rmtree, move, copy
+from os import mkdir, path
+from distutils.dir_util import copy_tree
 
 from QuickWall.logger import Logger
 
@@ -52,11 +53,9 @@ def clear_cache(dir="~/.cache/QuickWall"):
 
 def migrate_to_new_loc():
     """Move the files from the older dir to the new cache location."""
-    src = Path("~/.QuickWall").expanduser()
-    des = Path("~/.cache/QuickWall").expanduser()
+    src = path.expanduser("~/.QuickWall")
+    des = path.expanduser("~/.cache/QuickWall")
 
-    if not des.exists():
-        mkdir(des)
+    copy_tree(src, des)
 
-    for file_ in src.iterdir():
-        move(str(file_), str(des))
+    rmtree(src, ignore_errors=True)

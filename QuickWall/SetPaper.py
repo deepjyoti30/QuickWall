@@ -19,7 +19,7 @@ class SetPaper:
     def __init__(
                     self,
                     entity_list,
-                    setter, passed_dir="~/.QuickWall",
+                    setter, passed_dir="~/.cache/QuickWall",
                     disable_blacklist=False
                 ):
         self.entity_list = entity_list
