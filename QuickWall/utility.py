@@ -3,7 +3,7 @@
 import subprocess
 
 from pathlib import Path
-from shutil import rmtree
+from shutil import rmtree, move
 from os import mkdir
 
 from QuickWall.logger import Logger
@@ -36,7 +36,7 @@ def is_feh():
     return True if err is None else False
 
 
-def clear_cache(dir="~/.QuickWall"):
+def clear_cache(dir="~/.cache/QuickWall"):
     """
     Clear the cache from the QuickWall dir
     """
@@ -48,3 +48,15 @@ def clear_cache(dir="~/.QuickWall"):
         mkdir(dir_path)
     else:
         logger.warning("{}: Does not exist".format(dir))
+
+
+def migrate_to_new_loc():
+    """Move the files from the older dir to the new cache location."""
+    src = Path("~/.QuickWall").expanduser()
+    des = Path("~/.cache/QuickWall").expanduser()
+
+    if not des.exists():
+        mkdir(des)
+
+    for file_ in src.iterdir():
+        move(str(file_), str(des))

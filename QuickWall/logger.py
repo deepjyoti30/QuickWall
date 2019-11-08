@@ -13,7 +13,7 @@ class Logger:
         self.name = name
         self._file_format = ''
         self._console_format = ''
-        self._log_file = Path('~/.QuickWall/logs/log.cat').expanduser()
+        self._log_file = Path('~/.cache/QuickWall/logs/log.cat').expanduser()
         self._check_logfile()
         self._level_number = {
                                 'DEBUG': 0,

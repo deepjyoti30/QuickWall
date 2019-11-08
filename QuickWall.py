@@ -5,7 +5,11 @@ import requests
 import argparse
 
 from QuickWall.SetPaper import SetPaper
-from QuickWall.utility import (is_nitrogen, clear_cache)
+from QuickWall.utility import (
+    is_nitrogen,
+    clear_cache,
+    migrate_to_new_loc
+)
 from QuickWall.logger import Logger
 from QuickWall.setter import WallSetter
 from QuickWall.wall import Wall
@@ -27,7 +31,7 @@ def parse():
     parser.add_argument('--version', action='version', version='0.0.1-4',
                         help='show the program version number and exit')
     parser.add_argument('--clear-cache', help="Clear the cache from the\
-                        cache folder (~/.QuickWall)", action='store_true')
+                        cache folder (~/.cache/QuickWall)", action='store_true')
     parser.add_argument('--setter', help="Wallpaper setter to be used.\
                         Currently supported ones: nitrogen, feh  (default: nitrogen)",
                         type=str, default="nitrogen")
@@ -43,6 +47,8 @@ def parse():
                         action="store_true")
     parser.add_argument('--search', help="Show wallpapers based on the\
                         passed term", type=str, metavar="TERM")
+    parser.add_argument('--migrate', help="ONLY FOR EARLY USERS. Move the files\
+                        from ~/.QuickWall to ~/.cache/QuickWall.", action="store_true")
     args = parser.parse_args()
 
     return args
@@ -54,6 +60,10 @@ def main():
 
     if args.clear_cache:
         clear_cache()
+        exit(0)
+
+    if args.migrate:
+        migrate_to_new_loc()
         exit(0)
 
     if args.remove_id:
@@ -71,7 +81,7 @@ def main():
 
     # If the dir is None, update it
     if args.dir is None:
-        args.dir = "~/.QuickWall"
+        args.dir = "~/.cache/QuickWall"
 
     set_paper = SetPaper(paper_list, setter, args.dir, args.disable_blacklist)
     set_paper.do()
