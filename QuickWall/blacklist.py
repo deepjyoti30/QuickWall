@@ -13,7 +13,7 @@ class Blacklist:
     Functions to be used related to blacklist.
     """
     def __init__(self, unique_id):
-        self.blacklist_path = Path('~/.QuickWall/blacklist').expanduser()
+        self.blacklist_path = Path('~/.cache/QuickWall/blacklist').expanduser()
         self.unique_id = unique_id
 
     def is_blacklisted(self):

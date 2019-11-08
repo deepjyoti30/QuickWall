@@ -62,7 +62,7 @@ python setup.py install
 
 usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER] [-d]
                  [--remove-id ID] [--dir DIR] [--id ID] [--random]
-                 [--search TERM]
+                 [--search TERM] [--migrate]
 
 QuickWall - Quickly set latest wallpapers from Unsplash directly from the
 commandline.
@@ -80,6 +80,11 @@ optional arguments:
   --id ID               Get a photo by its ID.
   --random              Get random wallpapers.
   --search TERM         Show wallpapers based on the passed term
+  --migrate             ONLY FOR EARLY USERS | Move the files from
+                        ~/.QuickWall to /.cache/QuickWall.
+
+If you find any bugs, feel free to raise an issue in the GitHub
+[https://github.com/deepjyoti30/QuickWall] page.
 
 ```
 
