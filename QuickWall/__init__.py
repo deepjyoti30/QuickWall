@@ -9,5 +9,6 @@ __all__ = ['download',
            'blacklist',
            'SetPaper',
            'search',
-           'wall'
+           'wall',
+           'wal'
           ]
