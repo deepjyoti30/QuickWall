@@ -11,5 +11,5 @@ setup(
     scripts=['scripts/QuickWall'],
     version='0.0.1-5',
     license='MIT',
-    install_requires=['requests', 'pywal', 'dbus'],
+    install_requires=['requests', 'pywal'],
 )
