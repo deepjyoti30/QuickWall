@@ -6,6 +6,7 @@ from os import makedirs, remove
 from QuickWall.download import download
 from QuickWall.logger import Logger
 from QuickWall.blacklist import Blacklist
+from QuickWall.wal import Wal
 
 
 # Declare the logger
@@ -28,6 +29,8 @@ class SetPaper:
         makedirs(self._dir_path, exist_ok=True)
         self.setter_type = setter  # Update by calling the following function
         self.disable_blacklist = disable_blacklist
+        # Declare a wal object
+        self.wal = Wal()
 
     def _exists(self):
         """
@@ -49,18 +52,21 @@ class SetPaper:
         Restore the wallpaper.
         """
         self.setter_type.restore()
+        self.wal.restore()
 
     def _set(self):
         """
         Set the wallpaper.
         """
         self.setter_type.set(self._file_path)
+        self.wal.set(str(self._file_path))
 
     def _set_perma(self):
         """
         Set the wallpaper permanently
         """
         self.setter_type.set_perm(self._file_path)
+        self.wal.save()
 
     def _is_exists(self):
         """
@@ -76,6 +82,7 @@ class SetPaper:
         for entity in self.entity_list:
             # Check if blacklisted. If yes, skip to next paper
             blacklist = Blacklist(entity['unique_id'])
+
             if blacklist.is_blacklisted():
                 logger.debug("Found in blacklisted ones")
                 continue
