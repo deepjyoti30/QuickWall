@@ -4,6 +4,7 @@ from QuickWall.nitrogen import nitrogen
 from QuickWall.feh import feh
 from QuickWall.kde import KDEsetpaper
 from QuickWall.logger import Logger
+from QuickWall.utility import get_desktop_environment
 
 # Declare the logger
 logger = Logger("Setter")
@@ -18,13 +19,24 @@ class WallSetter:
         self.available_setters = {
                                 'nitrogen': nitrogen,
                                 'feh': feh,
-                                'kde': KDEsetpaper
+                                'kde': KDEsetpaper,
                                 }
         self.setter = None
         self._select_setter()
 
+    def _detect_setter(self):
+        DE = get_desktop_environment()
+        logger.debug("Automatically detecting what setter to use.")
+        if DE == "kde":
+            return "kde"
+        elif DE == "i3":
+            return "nitrogen"
+
     def _select_setter(self):
         """Select the wallpaper setter."""
+        if self.setter_type == "auto":
+            self.setter_type = self._detect_setter()
+
         try:
             self.setter = self.available_setters[self.setter_type]
         except KeyError:
