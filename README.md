@@ -8,7 +8,7 @@
 <div align="center">
 <br/>
 
-<a href="#how-it-works">How It Works</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#to-do">TODO</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#acknowledgements">Acknowledgements</a>&nbsp;&nbsp;&nbsp;
+<a href="#how-it-works">How It Works</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#requirements">Requirements</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#usage">Usage</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#todo">TODO</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#acknowledgements">Acknowledgements</a>&nbsp;&nbsp;&nbsp;
 <br/><br/>
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)<br/><br/>
@@ -96,9 +96,11 @@ If you find any bugs, feel free to raise an issue in the GitHub
 - Add tests
 - Add support for different wallpaper setters (raise an issue if you want me to support some particular one)
 - Handle errors better
+- Add automatic detection of wallpaper setter depending on the OS. Fallback would be nitrogen.
 - ~~Add a logger~~
 - ~~Add support to search~~
 
 ## Acknowledgements
 
-### [Unsplash](https://unsplash.com) for their awesome API.
+- [Unsplash](https://unsplash.com) for their awesome API.
+- [Pavel Borisov](https://github.com/pashazz) for [ksetpaper](https://github.com/pashazz/ksetwallpaper) code.

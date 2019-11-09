@@ -2,6 +2,7 @@
 
 from QuickWall.nitrogen import nitrogen
 from QuickWall.feh import feh
+from QuickWall.kde import KDEsetpaper
 from QuickWall.logger import Logger
 
 # Declare the logger
@@ -16,7 +17,8 @@ class WallSetter:
         self.setter_type = setter_type
         self.available_setters = {
                                 'nitrogen': nitrogen,
-                                'feh': feh
+                                'feh': feh,
+                                'kde': KDEsetpaper
                                 }
         self.setter = None
         self._select_setter()

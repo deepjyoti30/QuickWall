@@ -33,7 +33,8 @@ def parse():
     parser.add_argument('--clear-cache', help="Clear the cache from the\
                         cache folder (~/.cache/QuickWall)", action='store_true')
     parser.add_argument('--setter', help="Wallpaper setter to be used.\
-                        Currently supported ones: nitrogen, feh  (default: nitrogen)",
+                        Currently supported ones: nitrogen, feh, kde\
+                          (default: nitrogen)",
                         type=str, default="nitrogen")
     parser.add_argument('-d', '--disable-blacklist', help="Disable adding the\
                         image to blacklisted ones.", action="store_true")
