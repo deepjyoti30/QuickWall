@@ -76,7 +76,7 @@ optional arguments:
   --clear-cache         Clear the cache from the cache folder
                         (~/.cache/QuickWall)
   --setter SETTER       Wallpaper setter to be used. Currently supported ones:
-                        nitrogen, feh, kde (default: nitrogen)
+                        nitrogen, feh, kde (default: auto)
   -d, --disable-blacklist
                         Disable adding the image to blacklisted ones.
   --remove-id ID        Remove the passed ID from the blacklist.
