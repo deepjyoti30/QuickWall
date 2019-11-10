@@ -1,9 +1,10 @@
 """Set wallpapers in KDE."""
 
 import dbus
+from os import path
+from shutil import copy
 
-
-def setwallpaper(filepath, plugin='org.kde.image'):
+def setwallpaper(filepath):
     """
     This script is taken from https://github.com/pashazz/ksetwallpaper/
 
@@ -11,30 +12,73 @@ def setwallpaper(filepath, plugin='org.kde.image'):
     to add a functionality to my app.
     """
 
-    jscript = """
-    var allDesktops = desktops();
-    print (allDesktops);
-    for (i=0;i<allDesktops.length;i++) {
+    jscript = """var allDesktops = desktops();
+    for ( i = 0; i < allDesktops.length;i++ ) {
         d = allDesktops[i];
-        d.wallpaperPlugin = "%s";
-        d.currentConfigGroup = Array("Wallpaper", "%s", "General");
+        d.wallpaperPlugin = "org.kde.image";
+        d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");
         d.writeConfig("Image", "file://%s")
     }
     """
     bus = dbus.SessionBus()
     plasma = dbus.Interface(bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
-    plasma.evaluateScript(jscript % (plugin, plugin, filepath))
+    plasma.evaluateScript(jscript % filepath)
 
+def saveRestorableWallpaper():
+    """
+    Save current wallpaper as RestorableImage in kde wallpaper config 
+    """
+    jscript = """var first = desktopForScreen(0);
+    first.currentConfigGroup = Array( 'Wallpaper', 'org.kde.image', 'General' );
+    var img = first.readConfig('Image');
+    first.writeConfig('RestorableImage' , img);
+    """
+
+    bus = dbus.SessionBus()
+    plasma = dbus.Interface(bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
+    plasma.evaluateScript(jscript)
+
+def restoreWallpaper():
+    """
+    Load wallpaper from RestorableImage config
+    """
+    jscript = """var first = desktopForScreen(0);
+    first.currentConfigGroup = Array( 'Wallpaper', 'org.kde.image', 'General' );
+    var img = first.readConfig('RestorableImage');
+    
+    var allDesktops = desktops();
+    for ( i = 0; i < allDesktops.length;i++ ) {
+        d = allDesktops[i];
+        d.wallpaperPlugin = "org.kde.image";
+        d.currentConfigGroup = Array("Wallpaper", "org.kde.image", "General");
+        d.writeConfig("Image", img)
+    }
+    """
+
+    bus = dbus.SessionBus()
+    plasma = dbus.Interface(bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
+    plasma.evaluateScript(jscript)
 
 class KDEsetpaper:
-    """Use the script available in ./utils to set the wall."""
+    def __init__(self):
+        """Initialize KDE workflow"""
+        saveRestorableWallpaper()
+
     def set(self, file_path):
+        """Set wallpaper"""
         setwallpaper(file_path)
 
     def set_perm(self, file_path):
-        # Same as set
-        self.set(file_path)
+        """
+        Permanetly set wallpaper
+        
+        Creates restorableImage.jpg which allows kde to 
+        restore image as it doesnt store images by itself
+        """
+        new_path = path.dirname(file_path) + "/restorableImage.jpg"
+        copy(file_path , new_path)
+        setwallpaper(new_path)
 
     def restore(self):
-        """Currently there is no way to restore the last wallpaper."""
-        pass
+        """Restore wallpaper"""
+        restoreWallpaper()
