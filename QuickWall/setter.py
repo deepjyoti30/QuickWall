@@ -29,7 +29,10 @@ class WallSetter:
         logger.debug("Automatically detecting what setter to use.")
         if DE == "kde":
             return "kde"
-        elif DE == "i3":
+        elif DE in [
+                "i3",
+                "unknown",
+                ]:
             return "nitrogen"
 
     def _select_setter(self):
