@@ -4,6 +4,7 @@ import dbus
 from os import path
 from shutil import copy
 
+
 def setwallpaper(filepath):
     """
     This script is taken from https://github.com/pashazz/ksetwallpaper/
@@ -24,6 +25,7 @@ def setwallpaper(filepath):
     plasma = dbus.Interface(bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
     plasma.evaluateScript(jscript % filepath)
 
+
 def saveRestorableWallpaper():
     """
     Save current wallpaper as RestorableImage in kde wallpaper config 
@@ -38,6 +40,7 @@ def saveRestorableWallpaper():
     plasma = dbus.Interface(bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
     plasma.evaluateScript(jscript)
 
+
 def restoreWallpaper():
     """
     Load wallpaper from RestorableImage config
@@ -45,7 +48,7 @@ def restoreWallpaper():
     jscript = """var first = desktopForScreen(0);
     first.currentConfigGroup = Array( 'Wallpaper', 'org.kde.image', 'General' );
     var img = first.readConfig('RestorableImage');
-    
+
     var allDesktops = desktops();
     for ( i = 0; i < allDesktops.length;i++ ) {
         d = allDesktops[i];
@@ -59,6 +62,7 @@ def restoreWallpaper():
     plasma = dbus.Interface(bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
     plasma.evaluateScript(jscript)
 
+
 class KDEsetpaper:
     def __init__(self):
         """Initialize KDE workflow"""
@@ -70,13 +74,13 @@ class KDEsetpaper:
 
     def set_perm(self, file_path):
         """
-        Permanetly set wallpaper
-        
-        Creates restorableImage.jpg which allows kde to 
+        Permanetly set wallpaper.
+
+        Creates restorableImage.jpg which allows kde to
         restore image as it doesnt store images by itself
         """
         new_path = path.dirname(file_path) + "/restorableImage.jpg"
-        copy(file_path , new_path)
+        copy(file_path, new_path)
         setwallpaper(new_path)
 
     def restore(self):
