@@ -34,8 +34,8 @@ def parse():
                         cache folder (~/.cache/QuickWall)", action='store_true')
     parser.add_argument('--setter', help="Wallpaper setter to be used.\
                         Currently supported ones: nitrogen, feh, kde\
-                          (default: nitrogen)",
-                        type=str, default="nitrogen")
+                          (default: auto)",
+                        type=str, default="auto")
     parser.add_argument('-d', '--disable-blacklist', help="Disable adding the\
                         image to blacklisted ones.", action="store_true")
     parser.add_argument('--remove-id', help="Remove the passed ID\
