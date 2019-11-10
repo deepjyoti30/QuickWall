@@ -61,6 +61,7 @@ def restoreWallpaper():
 
 class KDEsetpaper:
     def __init__(self):
+        """Initialize KDE workflow"""
         saveRestorableWallpaper()
 
     def set(self, file_path):
@@ -69,7 +70,7 @@ class KDEsetpaper:
 
     def set_perm(self, file_path):
         """
-        Pernametly set wallpaper
+        Permanetly set wallpaper
         
         Creates restorableImage.jpg which allows kde to 
         restore image as it doesnt store images by itself
