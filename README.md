@@ -54,6 +54,7 @@ python setup.py install
 
     - [nitrogen](https://github.com/l3ib/nitrogen)
     - [feh](https://github.com/derf/feh)
+    - [kde](https://github.com/KDE/plasma-desktop)
 
 > **NOTE**: These dependencies in linux can be installed in other variants.  
 > For *arch linux*, you can use **pacman** package manager accordingly.
@@ -75,7 +76,7 @@ optional arguments:
   --clear-cache         Clear the cache from the cache folder
                         (~/.cache/QuickWall)
   --setter SETTER       Wallpaper setter to be used. Currently supported ones:
-                        nitrogen, feh (default: nitrogen)
+                        nitrogen, feh, kde (default: nitrogen)
   -d, --disable-blacklist
                         Disable adding the image to blacklisted ones.
   --remove-id ID        Remove the passed ID from the blacklist.
