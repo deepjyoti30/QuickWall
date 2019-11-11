@@ -21,7 +21,8 @@ class SetPaper:
                     self,
                     entity_list,
                     setter, passed_dir="~/.cache/QuickWall",
-                    disable_blacklist=False
+                    disable_blacklist=False,
+                    disable_theme=False
                 ):
         self.entity_list = entity_list
         self._dir_path = Path(passed_dir).expanduser()
@@ -29,8 +30,13 @@ class SetPaper:
         makedirs(self._dir_path, exist_ok=True)
         self.setter_type = setter  # Update by calling the following function
         self.disable_blacklist = disable_blacklist
-        # Declare a wal object
-        self.wal = Wal()
+        self._disable_theme = disable_theme
+
+        if not self._disable_theme:
+            # Declare a wal object
+            self.wal = Wal()
+        else:
+            logger.info("Skipping setting theme")
 
     def _exists(self):
         """
@@ -52,21 +58,24 @@ class SetPaper:
         Restore the wallpaper.
         """
         self.setter_type.restore()
-        self.wal.restore()
+        if not self._disable_theme:
+            self.wal.restore()
 
     def _set(self):
         """
         Set the wallpaper.
         """
         self.setter_type.set(self._file_path)
-        self.wal.set(str(self._file_path))
+        if not self._disable_theme:
+            self.wal.set(str(self._file_path))
 
     def _set_perma(self):
         """
         Set the wallpaper permanently
         """
         self.setter_type.set_perm(self._file_path)
-        self.wal.save()
+        if not self._disable_theme:
+            self.wal.save()
 
     def _is_exists(self):
         """
