@@ -18,10 +18,8 @@
 
 ## How It Works
 
-### It uses [Unsplash](https://unsplash.com) API to get wallpapers and set them using nitrogen.
-### The images are downloaded to ```~/.cache/QuickWall/``` and then set by nitrogen.
+It detects your DE or WM, gets wallpapers from **Unsplash** and sets them using either your choice of wallpaper setter or by **nitrogen**. Not enough? It can also change your theme based on the wallpapers that it gets, thanks to [pywal](https://github.com/dylanaraps/pywal).
 
-> **NOTE**: The directory is changed from ```~/.QuickWall``` to ```~/.cache/QuickWall```. Early users can use ```--migrate``` option to move their data.
 
 ## Installation
 
@@ -36,6 +34,8 @@ pip3 install QuickWall
 ```sh
 yay -S quickwall
 ```
+
+> **NOTE**: The directory is changed from ```~/.QuickWall``` to ```~/.cache/QuickWall```. Early users can use ```--migrate``` option to move their data.
 
 ### OR
 
@@ -62,30 +62,29 @@ python setup.py install
 ## Usage
 
 ```console
-
-usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER] [-d]
-                 [--remove-id ID] [--dir DIR] [--id ID] [--random]
-                 [--search TERM] [--migrate]
+usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER]
+                 [--disable-blacklist] [--disable-theme] [--remove-id ID]
+                 [--dir DIR] [--id ID] [--random] [--search TERM] [--migrate]
 
 QuickWall - Quickly set latest wallpapers from Unsplash directly from the
 commandline.
 
 optional arguments:
-  -h, --help            show this help message and exit
-  --version             show the program version number and exit
-  --clear-cache         Clear the cache from the cache folder
-                        (~/.cache/QuickWall)
-  --setter SETTER       Wallpaper setter to be used. Currently supported ones:
-                        nitrogen, feh, kde (default: auto)
-  -d, --disable-blacklist
-                        Disable adding the image to blacklisted ones.
-  --remove-id ID        Remove the passed ID from the blacklist.
-  --dir DIR             Directory to download the wallpapers
-  --id ID               Get a photo by its ID.
-  --random              Get random wallpapers.
-  --search TERM         Show wallpapers based on the passed term
-  --migrate             ONLY FOR EARLY USERS. Move the files from ~/.QuickWall
-                        to ~/.cache/QuickWall.
+  -h, --help           show this help message and exit
+  --version            show the program version number and exit
+  --clear-cache        Clear the cache from the cache folder
+                       (~/.cache/QuickWall)
+  --setter SETTER      Wallpaper setter to be used. Currently supported ones:
+                       nitrogen, feh, kde (default: auto)
+  --disable-blacklist  Disable adding the image to blacklisted ones.
+  --disable-theme      Disable setting themes using pywal.
+  --remove-id ID       Remove the passed ID from the blacklist.
+  --dir DIR            Directory to download the wallpapers
+  --id ID              Get a photo by its ID.
+  --random             Get random wallpapers.
+  --search TERM        Show wallpapers based on the passed term
+  --migrate            ONLY FOR EARLY USERS. Move the files from ~/.QuickWall
+                       to ~/.cache/QuickWall.
 
 If you find any bugs, feel free to raise an issue in the GitHub
 [https://github.com/deepjyoti30/QuickWall] page.
