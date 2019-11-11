@@ -33,7 +33,7 @@ class Blacklist:
         else:
             return False
 
-    def add_blacklist(self):
+    def add_blacklist(self, silent=False):
         """
         Add the passed unique_id to blacklist.
         """
@@ -42,7 +42,9 @@ class Blacklist:
 
         WRITESTREAM = open(self.blacklist_path, 'a+')
         WRITESTREAM.write('\n{}'.format(self.unique_id))
-        logger.info("{} added to blacklist".format(self.unique_id))
+
+        if not silent:
+            logger.info("{} added to blacklist".format(self.unique_id))
 
     def remove_blacklist(self):
         """Remove the passed id from the file."""

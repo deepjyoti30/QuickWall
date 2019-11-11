@@ -83,9 +83,9 @@ class SetPaper:
         """
         return self._file_path.exists()
 
-    def _blacklist(self, blacklist_obj):
+    def _blacklist(self, blacklist_obj, silent=False):
         if not self.disable_blacklist:
-            blacklist_obj.add_blacklist()
+            blacklist_obj.add_blacklist(silent)
 
     def do(self):
         for entity in self.entity_list:
@@ -108,6 +108,8 @@ class SetPaper:
             # Interaction
             ask = input("Save this wallpapers? [Y]es [N]o [E]xit ")
             if ask.lower() == 'y':
+                # Adding to blacklist is imp so that it doesn't pop up again.
+                self._blacklist(blacklist, silent=True)
                 self._set_perma()
                 exit()
             elif ask.lower() == 'e':
