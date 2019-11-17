@@ -1,7 +1,7 @@
 """Set wallpapers in KDE."""
 
 import dbus
-from os import path
+from os import path, system
 from shutil import copy
 
 def setwallpaper(filepath):
@@ -77,6 +77,11 @@ class KDEsetpaper:
         new_path = path.dirname(file_path) + "/restorableImage.jpg"
         copy(file_path, new_path)
         setwallpaper(new_path)
+
+        # Save to lock screen
+        # Based on https://github.com/RaitaroH/KDE-Terminal-Wallpaper-Changer
+        command = "kwriteconfig5 --file kscreenlockerrc --group Greeter --group Wallpaper --group org.kde.image --group General --key Image \"file://{}\"".format(new_path)
+        system(command)
 
     def restore(self):
         """Restore wallpaper"""
