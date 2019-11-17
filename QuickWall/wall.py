@@ -1,4 +1,5 @@
 import requests
+from re import sub
 
 from QuickWall.logger import Logger
 
@@ -24,7 +25,7 @@ class Wall:
                 search=None
             ):
         self.s_term = None
-        self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
+        self._acces_key = sub(r'\n|"', '', requests.get("https://deepjyoti30server.herokuapp.com/key").text)
         self._URL = "https://api.unsplash.com/photos/"
         self._URL_list = []
         self.random = random

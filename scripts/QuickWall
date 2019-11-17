@@ -36,8 +36,10 @@ def parse():
                         Currently supported ones: nitrogen, feh, kde\
                           (default: auto)",
                         type=str, default="auto")
-    parser.add_argument('-d', '--disable-blacklist', help="Disable adding the\
+    parser.add_argument('--disable-blacklist', help="Disable adding the\
                         image to blacklisted ones.", action="store_true")
+    parser.add_argument('--disable-theme', help="Disable setting\
+                        themes using pywal.", action="store_true")
     parser.add_argument('--remove-id', help="Remove the passed ID\
                         from the blacklist.", default=None, type=str, metavar="ID")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
@@ -84,7 +86,12 @@ def main():
     if args.dir is None:
         args.dir = "~/.cache/QuickWall"
 
-    set_paper = SetPaper(paper_list, setter, args.dir, args.disable_blacklist)
+    set_paper = SetPaper(
+                    paper_list,
+                    setter, args.dir,
+                    args.disable_blacklist,
+                    args.disable_theme
+                )
     set_paper.do()
 
 

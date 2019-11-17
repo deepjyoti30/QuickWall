@@ -3,7 +3,7 @@
 from pathlib import Path
 from os import makedirs, remove
 
-from QuickWall.download import download
+from downloader_cli.download import Download
 from QuickWall.logger import Logger
 from QuickWall.blacklist import Blacklist
 from QuickWall.wal import Wal
@@ -21,7 +21,8 @@ class SetPaper:
                     self,
                     entity_list,
                     setter, passed_dir="~/.cache/QuickWall",
-                    disable_blacklist=False
+                    disable_blacklist=False,
+                    disable_theme=False
                 ):
         self.entity_list = entity_list
         self._dir_path = Path(passed_dir).expanduser()
@@ -29,8 +30,13 @@ class SetPaper:
         makedirs(self._dir_path, exist_ok=True)
         self.setter_type = setter  # Update by calling the following function
         self.disable_blacklist = disable_blacklist
-        # Declare a wal object
-        self.wal = Wal()
+        self._disable_theme = disable_theme
+
+        if not self._disable_theme:
+            # Declare a wal object
+            self.wal = Wal()
+        else:
+            logger.info("Skipping setting theme")
 
     def _exists(self):
         """
@@ -45,28 +51,31 @@ class SetPaper:
         """
         Download the file using a download manager.
         """
-        download(url, self._file_path)
+        Download(url, self._file_path, icon_done="-", icon_left=' ').download()
 
     def _restore(self):
         """
         Restore the wallpaper.
         """
         self.setter_type.restore()
-        self.wal.restore()
+        if not self._disable_theme:
+            self.wal.restore()
 
     def _set(self):
         """
         Set the wallpaper.
         """
         self.setter_type.set(self._file_path)
-        self.wal.set(str(self._file_path))
+        if not self._disable_theme:
+            self.wal.set(str(self._file_path))
 
     def _set_perma(self):
         """
         Set the wallpaper permanently
         """
         self.setter_type.set_perm(self._file_path)
-        self.wal.save()
+        if not self._disable_theme:
+            self.wal.save()
 
     def _is_exists(self):
         """
@@ -74,9 +83,9 @@ class SetPaper:
         """
         return self._file_path.exists()
 
-    def _blacklist(self, blacklist_obj):
+    def _blacklist(self, blacklist_obj, silent=False):
         if not self.disable_blacklist:
-            blacklist_obj.add_blacklist()
+            blacklist_obj.add_blacklist(silent)
 
     def do(self):
         for entity in self.entity_list:
@@ -99,6 +108,8 @@ class SetPaper:
             # Interaction
             ask = input("Save this wallpapers? [Y]es [N]o [E]xit ")
             if ask.lower() == 'y':
+                # Adding to blacklist is imp so that it doesn't pop up again.
+                self._blacklist(blacklist, silent=True)
                 self._set_perma()
                 exit()
             elif ask.lower() == 'e':

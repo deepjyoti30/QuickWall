@@ -45,7 +45,6 @@ def restoreWallpaper():
     jscript = """var first = desktopForScreen(0);
     first.currentConfigGroup = Array( 'Wallpaper', 'org.kde.image', 'General' );
     var img = first.readConfig('RestorableImage');
-    
     var allDesktops = desktops();
     for ( i = 0; i < allDesktops.length;i++ ) {
         d = allDesktops[i];
@@ -70,13 +69,13 @@ class KDEsetpaper:
 
     def set_perm(self, file_path):
         """
-        Permanetly set wallpaper
-        
-        Creates restorableImage.jpg which allows kde to 
+        Permanetly set wallpaper.
+
+        Creates restorableImage.jpg which allows kde to
         restore image as it doesnt store images by itself
         """
         new_path = path.dirname(file_path) + "/restorableImage.jpg"
-        copy(file_path , new_path)
+        copy(file_path, new_path)
         setwallpaper(new_path)
 
     def restore(self):
