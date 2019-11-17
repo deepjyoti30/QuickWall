@@ -3,7 +3,7 @@
 from pathlib import Path
 from os import makedirs, remove
 
-from QuickWall.download import download
+from downloader_cli.download import Download
 from QuickWall.logger import Logger
 from QuickWall.blacklist import Blacklist
 from QuickWall.wal import Wal
@@ -51,7 +51,7 @@ class SetPaper:
         """
         Download the file using a download manager.
         """
-        download(url, self._file_path)
+        Download(url, self._file_path, icon_done="-", icon_left=' ').download()
 
     def _restore(self):
         """
