@@ -33,12 +33,12 @@ def saveRestorableWallpaper():
     """
     Save current wallpaper as RestorableImage in kde wallpaper config 
     """
+
     jscript = """var first = desktopForScreen(0);
     first.currentConfigGroup = Array( 'Wallpaper', 'org.kde.image', 'General' );
     var img = first.readConfig('Image');
     first.writeConfig('RestorableImage' , img);
     """
-
     bus = dbus.SessionBus()
     plasma = dbus.Interface(bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
     plasma.evaluateScript(jscript)
@@ -48,6 +48,7 @@ def restoreWallpaper():
     """
     Load wallpaper from RestorableImage config
     """
+    
     jscript = """var first = desktopForScreen(0);
     first.currentConfigGroup = Array( 'Wallpaper', 'org.kde.image', 'General' );
     var img = first.readConfig('RestorableImage');
@@ -59,16 +60,16 @@ def restoreWallpaper():
         d.writeConfig("Image", img)
     }
     """
-
     bus = dbus.SessionBus()
     plasma = dbus.Interface(bus.get_object('org.kde.plasmashell', '/PlasmaShell'), dbus_interface='org.kde.PlasmaShell')
     plasma.evaluateScript(jscript)
 
 
 class KDEsetpaper:
-    def __init__(self):
+    def __init__(self, wallpaper = False):
         """Initialize KDE workflow"""
         saveRestorableWallpaper()
+        self.wallpaper = wallpaper
 
     def set(self, file_path):
         """Set wallpaper"""
@@ -85,8 +86,7 @@ class KDEsetpaper:
         copy(file_path, new_path)
         setwallpaper(new_path)
 
-        ask = input("Do you want to set lockscreen wallpaper ? [Y]es [N]o ")
-        if (ask.lower() == "y"):
+        if (self.wallpaper):
             # Set lock screen as wallpaper
             # Based on https://github.com/RaitaroH/KDE-Terminal-Wallpaper-Changer
 

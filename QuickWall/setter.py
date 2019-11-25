@@ -14,7 +14,7 @@ class WallSetter:
     """
     Select the wallpaper setter.
     """
-    def __init__(self, setter_type):
+    def __init__(self, setter_type, lockscreen = False):
         self.setter_type = setter_type
         self.available_setters = {
                                 'nitrogen': nitrogen,
@@ -23,6 +23,7 @@ class WallSetter:
                                 }
         self.setter = None
         self._select_setter()
+        self.lockscreen = lockscreen
 
     def _detect_setter(self):
         DE = get_desktop_environment()
@@ -50,4 +51,8 @@ class WallSetter:
         Return the setter.
         """
         logger.info("Using {} as wallpaper setter".format(self.setter_type))
+
+        if (self.lockscreen):
+            return self.setter(True)
+
         return self.setter()
