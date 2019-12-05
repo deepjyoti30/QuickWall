@@ -9,6 +9,7 @@ from QuickWall.utility import get_desktop_environment
 # Declare the logger
 logger = Logger("Setter")
 
+LockscreenCompatibleSetters = [ "kde" ]
 
 class WallSetter:
     """
@@ -52,7 +53,7 @@ class WallSetter:
         """
         logger.info("Using {} as wallpaper setter".format(self.setter_type))
 
-        if (self.lockscreen):
+        if (self.lockscreen and self.setter_type in LockscreenCompatibleSetters):
             return self.setter(True)
 
         return self.setter()
