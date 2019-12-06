@@ -49,6 +49,9 @@ def parse():
                         passed term", type=str, metavar="TERM")
     parser.add_argument('--migrate', help="ONLY FOR EARLY USERS. Move the files\
                         from ~/.QuickWall to ~/.cache/QuickWall.", action="store_true")
+    parser.add_argument('--set-lockscreen', help="Set lockscreen wallpaper (currently for KDE)", 
+                        action='store_true')
+
     args = parser.parse_args()
 
     return args
@@ -73,7 +76,7 @@ def main():
     wall = Wall(photo_id=args.id, random=args.random, search=args.search)
 
     # Get the wallpaper setter
-    wall_setter = WallSetter(args.setter)
+    wall_setter = WallSetter(args.setter, args.set_lockscreen)
     setter = wall_setter.get_setter()
 
     logger.info("Getting the wallpapers using Unsplash API...")
