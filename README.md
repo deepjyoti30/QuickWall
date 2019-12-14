@@ -62,32 +62,30 @@ python setup.py install
 ## Usage
 
 ```console
-usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER]
-                 [--disable-blacklist] [--disable-theme] [--remove-id ID]
-                 [--dir DIR] [--id ID] [--random] [--search TERM] [--migrate]
+usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER] [-d]
+                 [--remove-id ID] [--dir DIR] [--id ID] [--random]
+                 [--search TERM] [--migrate] [--set-lockscreen]
 
 QuickWall - Quickly set latest wallpapers from Unsplash directly from the
 commandline.
 
 optional arguments:
-  -h, --help           show this help message and exit
-  --version            show the program version number and exit
-  --clear-cache        Clear the cache from the cache folder
-                       (~/.cache/QuickWall)
-  --setter SETTER      Wallpaper setter to be used. Currently supported ones:
-                       nitrogen, feh, kde (default: auto)
-  --disable-blacklist  Disable adding the image to blacklisted ones.
-  --disable-theme      Disable setting themes using pywal.
-  --remove-id ID       Remove the passed ID from the blacklist.
-  --dir DIR            Directory to download the wallpapers
-  --id ID              Get a photo by its ID.
-  --random             Get random wallpapers.
-  --search TERM        Show wallpapers based on the passed term
-  --migrate            ONLY FOR EARLY USERS. Move the files from ~/.QuickWall
-                       to ~/.cache/QuickWall.
-
-If you find any bugs, feel free to raise an issue in the GitHub
-[https://github.com/deepjyoti30/QuickWall] page.
+  -h, --help            show this help message and exit
+  --version             show the program version number and exit
+  --clear-cache         Clear the cache from the cache folder
+                        (~/.cache/QuickWall)
+  --setter SETTER       Wallpaper setter to be used. Currently supported ones:
+                        nitrogen, feh (default: nitrogen)
+  -d, --disable-blacklist
+                        Disable adding the image to blacklisted ones.
+  --remove-id ID        Remove the passed ID from the blacklist.
+  --dir DIR             Directory to download the wallpapers
+  --id ID               Get a photo by its ID.
+  --random              Get random wallpapers.
+  --search TERM         Show wallpapers based on the passed term
+  --migrate             ONLY FOR EARLY USERS. Move the files from ~/.QuickWall to
+                        ~/.cache/QuickWall.
+  --set-lockscreen      Set lockscreen wallpaper (currently for KDE)
 
 ```
 
