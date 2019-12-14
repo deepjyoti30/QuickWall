@@ -9,7 +9,7 @@ class Logger:
         Custom logger that meets the requirements of using multiple logging setup.
     """
 
-    def __init__(self, name='', level='INFO'):
+    def __init__(self, name='', level='DEBUG'):
         self.name = name
         self._file_format = ''
         self._console_format = ''

@@ -9,13 +9,14 @@ from QuickWall.utility import get_desktop_environment
 # Declare the logger
 logger = Logger("Setter")
 
-LockscreenCompatibleSetters = [ "kde" ]
+LockscreenCompatibleSetters = ["kde"]
+
 
 class WallSetter:
     """
     Select the wallpaper setter.
     """
-    def __init__(self, setter_type, lockscreen = False):
+    def __init__(self, setter_type, lockscreen=False):
         self.setter_type = setter_type
         self.available_setters = {
                                 'nitrogen': nitrogen,

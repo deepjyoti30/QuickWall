@@ -99,4 +99,5 @@ class Wall:
 
     def get_list(self):
         self._get_paper()
+        logger.debug("Found: {} papers".format(len(self._URL_list)))
         return self._URL_list

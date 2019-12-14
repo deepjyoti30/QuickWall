@@ -33,13 +33,10 @@ def parse():
     parser.add_argument('--clear-cache', help="Clear the cache from the\
                         cache folder (~/.cache/QuickWall)", action='store_true')
     parser.add_argument('--setter', help="Wallpaper setter to be used.\
-                        Currently supported ones: nitrogen, feh, kde\
-                          (default: auto)",
-                        type=str, default="auto")
-    parser.add_argument('--disable-blacklist', help="Disable adding the\
+                        Currently supported ones: nitrogen, feh  (default: nitrogen)",
+                        type=str, default="nitrogen")
+    parser.add_argument('-d', '--disable-blacklist', help="Disable adding the\
                         image to blacklisted ones.", action="store_true")
-    parser.add_argument('--disable-theme', help="Disable setting\
-                        themes using pywal.", action="store_true")
     parser.add_argument('--remove-id', help="Remove the passed ID\
                         from the blacklist.", default=None, type=str, metavar="ID")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
@@ -52,6 +49,9 @@ def parse():
                         passed term", type=str, metavar="TERM")
     parser.add_argument('--migrate', help="ONLY FOR EARLY USERS. Move the files\
                         from ~/.QuickWall to ~/.cache/QuickWall.", action="store_true")
+    parser.add_argument('--set-lockscreen', help="Set lockscreen wallpaper (currently for KDE)", 
+                        action='store_true')
+
     args = parser.parse_args()
 
     return args
@@ -76,7 +76,7 @@ def main():
     wall = Wall(photo_id=args.id, random=args.random, search=args.search)
 
     # Get the wallpaper setter
-    wall_setter = WallSetter(args.setter)
+    wall_setter = WallSetter(args.setter, args.set_lockscreen)
     setter = wall_setter.get_setter()
 
     logger.info("Getting the wallpapers using Unsplash API...")
@@ -86,12 +86,7 @@ def main():
     if args.dir is None:
         args.dir = "~/.cache/QuickWall"
 
-    set_paper = SetPaper(
-                    paper_list,
-                    setter, args.dir,
-                    args.disable_blacklist,
-                    args.disable_theme
-                )
+    set_paper = SetPaper(paper_list, setter, args.dir, args.disable_blacklist)
     set_paper.do()
 
 
