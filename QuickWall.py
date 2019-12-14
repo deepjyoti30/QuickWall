@@ -28,7 +28,7 @@ def parse():
                                      epilog="If you find any bugs, feel\
                                      free to raise an issue in the GitHub\
                                      [https://github.com/deepjyoti30/QuickWall] page.")
-    parser.add_argument('--version', action='version', version='0.0.1-4',
+    parser.add_argument('--version', action='version', version='0.0.2',
                         help='show the program version number and exit')
     parser.add_argument('--clear-cache', help="Clear the cache from the\
                         cache folder (~/.cache/QuickWall)", action='store_true')
