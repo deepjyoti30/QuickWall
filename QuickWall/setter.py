@@ -56,5 +56,7 @@ class WallSetter:
 
         if (self.lockscreen and self.setter_type in LockscreenCompatibleSetters):
             return self.setter(True)
+        else:
+            logger.warning("--set-lockscreen not available for the current wallpaper setter")
 
         return self.setter()
