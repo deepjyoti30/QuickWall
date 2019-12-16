@@ -66,7 +66,7 @@ def restoreWallpaper():
 
 
 class KDEsetpaper:
-    def __init__(self, wallpaper = False):
+    def __init__(self, wallpaper=False):
         """Initialize KDE workflow"""
         saveRestorableWallpaper()
         self.wallpaper = wallpaper

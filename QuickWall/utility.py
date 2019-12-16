@@ -116,9 +116,4 @@ def get_desktop_environment():
         elif environ.get('GNOME_DESKTOP_SESSION_ID'):
             if "deprecated" not in environ.get('GNOME_DESKTOP_SESSION_ID'):
                 return "gnome2"
-        # From http://ubuntuforums.org/showthread.php?t=652320
-        elif self.is_running("xfce-mcs-manage"):
-            return "xfce4"
-        elif self.is_running("ksmserver"):
-            return "kde"
     return "unknown"
