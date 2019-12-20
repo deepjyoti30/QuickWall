@@ -11,5 +11,5 @@ setup(
     scripts=['scripts/QuickWall'],
     version='0.0.2',
     license='MIT',
-    install_requires=['requests', 'pywal', 'downloader-cli'],
+    install_requires=['requests', 'pywal', 'downloader-cli', 'beautifulsoup4'],
 )
