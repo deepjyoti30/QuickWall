@@ -66,7 +66,7 @@ def restoreWallpaper():
 
 
 class KDEsetpaper:
-    def __init__(self, wallpaper=False):
+    def __init__(self, wallpaper=None):
         """Initialize KDE workflow"""
         saveRestorableWallpaper()
         self.wallpaper = wallpaper
@@ -86,7 +86,7 @@ class KDEsetpaper:
         copy(file_path, new_path)
         setwallpaper(new_path)
 
-        if (self.wallpaper):
+        if self.wallpaper is not None:
             # Set lock screen as wallpaper
             # Based on https://github.com/RaitaroH/KDE-Terminal-Wallpaper-Changer
 

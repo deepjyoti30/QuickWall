@@ -3,6 +3,7 @@
 from QuickWall.nitrogen import nitrogen
 from QuickWall.feh import feh
 from QuickWall.kde import KDEsetpaper
+from QuickWall.xfce import XFCESetter
 from QuickWall.logger import Logger
 from QuickWall.utility import get_desktop_environment
 
@@ -22,6 +23,7 @@ class WallSetter:
                                 'nitrogen': nitrogen,
                                 'feh': feh,
                                 'kde': KDEsetpaper,
+                                'xfce': XFCESetter
                                 }
         self.setter = None
         self._select_setter()
@@ -32,6 +34,8 @@ class WallSetter:
         logger.debug("Automatically detecting what setter to use.")
         if DE == "kde":
             return "kde"
+        elif DE == "xfce4":
+            return "xfce"
         elif DE in [
                 "i3",
                 "unknown",
