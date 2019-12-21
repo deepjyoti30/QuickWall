@@ -32,6 +32,7 @@ class WallSetter:
     def _detect_setter(self):
         DE = get_desktop_environment()
         logger.debug("Automatically detecting what setter to use.")
+        logger.debug("Detected : {}".format(DE))
         if DE == "kde":
             return "kde"
         elif DE == "xfce4":
