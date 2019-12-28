@@ -29,6 +29,7 @@ class WallSetter:
         self._select_setter()
         self.lockscreen = lockscreen
 
+    @classmethod
     def _detect_setter(self):
         DE = get_desktop_environment()
         logger.debug("Automatically detecting what setter to use.")

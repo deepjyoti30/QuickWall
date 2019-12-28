@@ -34,7 +34,7 @@ def parse():
                         cache folder (~/.cache/QuickWall)", action='store_true')
     parser.add_argument('--setter', help="Wallpaper setter to be used.\
                         Currently supported ones: nitrogen, feh  (default: nitrogen)",
-                        type=str, default="nitrogen")
+                        type=str, default=None)
     parser.add_argument('-d', '--disable-blacklist', help="Disable adding the\
                         image to blacklisted ones.", action="store_true")
     parser.add_argument('--remove-id', help="Remove the passed ID\
@@ -76,9 +76,11 @@ def main():
     wall = Wall(photo_id=args.id, random=args.random, search=args.search)
 
     # Get the wallpaper setter
+    if args.setter is None:
+        args.setter = WallSetter._detect_setter()
     wall_setter = WallSetter(args.setter, args.set_lockscreen)
     setter = wall_setter.get_setter()
-
+    
     logger.info("Getting the wallpapers using Unsplash API...")
     paper_list = wall.get_list()
 
