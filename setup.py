@@ -9,7 +9,7 @@ setup(
     long_description='Set any wallpaper from Unsplash from the commandline',
     url='http://github.com/deepjyoti30/QuickWall',
     scripts=['scripts/QuickWall'],
-    version='0.0.2',
+    version='0.0.3',
     license='MIT',
     install_requires=['requests', 'pywal', 'downloader-cli', 'beautifulsoup4'],
 )
