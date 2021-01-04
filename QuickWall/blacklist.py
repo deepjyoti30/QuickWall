@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from QuickWall.logger import Logger
+from simber import Logger
 
 # Declare logger
 logger = Logger("blacklist")

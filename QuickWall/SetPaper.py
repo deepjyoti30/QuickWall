@@ -4,7 +4,7 @@ from pathlib import Path
 from os import makedirs, remove
 
 from downloader_cli.download import Download
-from QuickWall.logger import Logger
+from simber import Logger
 from QuickWall.blacklist import Blacklist
 from QuickWall.wal import Wal
 

@@ -1,7 +1,7 @@
 import requests
 from re import sub
 
-from QuickWall.logger import Logger
+from simber import Logger
 
 
 logger = Logger('Wall')

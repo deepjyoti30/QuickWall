@@ -3,6 +3,7 @@
 
 import requests
 import argparse
+from pathlib import Path
 
 from QuickWall.SetPaper import SetPaper
 from QuickWall.utility import (
@@ -10,14 +11,22 @@ from QuickWall.utility import (
     clear_cache,
     migrate_to_new_loc
 )
-from QuickWall.logger import Logger
+from simber import Logger
 from QuickWall.setter import WallSetter
 from QuickWall.wall import Wall
 
 from QuickWall.blacklist import Blacklist
 
 # Declare the logger
-logger = Logger("main")
+LOGGER_OUTTEMPLATE = "%a[{logger}]%"
+LOGGER_FILEFORMAT = "[{logger}] [{levelname}] [{time}] [{lineno}]"
+logger = Logger(
+            "main",
+            log_path=Path('~/.cache/QuickWall/logs/log.cat').expanduser(),
+            format=LOGGER_OUTTEMPLATE,
+            file_format=LOGGER_FILEFORMAT,
+            update_all=True
+)
 
 
 def parse():

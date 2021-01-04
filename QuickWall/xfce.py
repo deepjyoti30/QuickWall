@@ -3,7 +3,7 @@
 import os
 from pathlib import Path
 from bs4 import BeautifulSoup
-from QuickWall.logger import Logger
+from simber import Logger
 
 logger = Logger("XFCE")
 

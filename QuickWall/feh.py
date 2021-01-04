@@ -3,7 +3,7 @@
 import subprocess
 from pathlib import Path
 
-from QuickWall.logger import Logger
+from simber import Logger
 
 # Declare the logger
 logger = Logger("feh")

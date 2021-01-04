@@ -5,7 +5,7 @@ from QuickWall.feh import feh
 from QuickWall.kde import KDEsetpaper
 from QuickWall.xfce import XFCESetter
 from QuickWall.gnome import GNOMESetter
-from QuickWall.logger import Logger
+from simber import Logger
 from QuickWall.utility import get_desktop_environment
 
 # Declare the logger

@@ -8,7 +8,7 @@ from os import mkdir, path, environ
 from sys import platform
 from distutils.dir_util import copy_tree
 
-from QuickWall.logger import Logger
+from simber import Logger
 
 
 # Declare logger

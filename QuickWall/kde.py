@@ -4,7 +4,7 @@ import dbus
 from os import path, system
 from shutil import copy
 
-from QuickWall.logger import Logger
+from simber import Logger
 logger = Logger("KDE")
 
 

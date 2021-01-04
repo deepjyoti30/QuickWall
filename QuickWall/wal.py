@@ -4,7 +4,7 @@ from pywal import (
     colors, export, sequences, theme, settings
 )
 import os
-from QuickWall.logger import Logger
+from simber import Logger
 
 logger = Logger("wal")
 

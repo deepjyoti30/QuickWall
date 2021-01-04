@@ -1,6 +1,6 @@
 import subprocess
 from pathlib import Path
-from QuickWall.logger import Logger
+from simber import Logger
 
 logger = Logger("GNOME")
 
