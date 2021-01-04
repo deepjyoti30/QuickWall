@@ -1,5 +1,15 @@
 from setuptools import setup, find_packages
 
+
+requirements = [
+    'requests',
+    'pywal',
+    'downloader-cli',
+    'beautifulsoup4',
+    'dbus-python',
+    'simber'
+]
+
 setup(
     name='QuickWall',
     packages=find_packages(),
@@ -11,5 +21,5 @@ setup(
     scripts=['scripts/QuickWall'],
     version='0.0.3-1',
     license='MIT',
-    install_requires=['requests', 'pywal', 'downloader-cli', 'beautifulsoup4', 'dbus-python', 'simber'],
+    install_requires=requirements,
 )
