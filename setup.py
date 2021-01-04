@@ -24,7 +24,7 @@ setup(
             'QuickWall = QuickWall.__main__:main_handler'
         ]
     },
-    version='0.0.3-1',
+    version='0.0.4',
     license='MIT',
     install_requires=requirements,
 )
