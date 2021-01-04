@@ -100,8 +100,12 @@ def main():
     set_paper.do()
 
 
-if __name__ == '__main__':
+def main_handler():
     try:
         main()
     except KeyboardInterrupt:
         logger.info("Keyboard Interrupt passed. Exiting..!")
+
+
+if __name__ == '__main__':
+    main_handler()

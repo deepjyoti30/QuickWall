@@ -11,5 +11,5 @@ __all__ = ['download',
            'SetPaper',
            'search',
            'wall',
-           'wal'
-          ]
+           'wal',
+           ]

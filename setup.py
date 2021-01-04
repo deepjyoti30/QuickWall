@@ -18,7 +18,12 @@ setup(
     description='Set any wallpaper from commandline',
     long_description='Set any wallpaper from Unsplash from the commandline',
     url='http://github.com/deepjyoti30/QuickWall',
-    scripts=['scripts/QuickWall'],
+    entry_points={
+        'console_scripts': [
+            'quickwall = QuickWall.__main__:main_handler',
+            'QuickWall = QuickWall.__main__:main_handler'
+        ]
+    },
     version='0.0.3-1',
     license='MIT',
     install_requires=requirements,
