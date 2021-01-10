@@ -54,6 +54,7 @@ class WallSetter:
     def _select_setter(self):
         """Select the wallpaper setter."""
         if self.setter_type == "auto":
+            logger.debug("Determining setter automatically")
             self.setter_type = self._detect_setter()
 
         try:
