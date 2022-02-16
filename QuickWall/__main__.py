@@ -21,11 +21,11 @@ from QuickWall.blacklist import Blacklist
 LOGGER_OUTTEMPLATE = "%a[{logger}]%"
 LOGGER_FILEFORMAT = "[{logger}] [{levelname}] [{time}] [{lineno}]"
 logger = Logger(
-            "main",
-            log_path=Path('~/.cache/QuickWall/logs/log.cat').expanduser(),
-            format=LOGGER_OUTTEMPLATE,
-            file_format=LOGGER_FILEFORMAT,
-            update_all=True
+    "main",
+    log_path=Path('~/.cache/QuickWall/logs/log.cat').expanduser(),
+    format=LOGGER_OUTTEMPLATE,
+    file_format=LOGGER_FILEFORMAT,
+    update_all=True
 )
 
 
@@ -47,6 +47,8 @@ def parse():
                         type=str, default="auto")
     parser.add_argument('-d', '--disable-blacklist', help="Disable adding the\
                         image to blacklisted ones.", action="store_true")
+    parser.add_argument('-t', '--disable-theme', help="Disable setting a colorscheme extracted from the wallpaper",
+                        action="store_true", default=False)
     parser.add_argument('--remove-id', help="Remove the passed ID\
                         from the blacklist.", default=None, type=str, metavar="ID")
     parser.add_argument('--dir', help="Directory to download the wallpapers",
@@ -59,7 +61,7 @@ def parse():
                         passed term", type=str, metavar="TERM")
     parser.add_argument('--migrate', help="ONLY FOR EARLY USERS. Move the files\
                         from ~/.QuickWall to ~/.cache/QuickWall.", action="store_true")
-    parser.add_argument('--set-lockscreen', help="Set lockscreen wallpaper (currently for KDE)", 
+    parser.add_argument('--set-lockscreen', help="Set lockscreen wallpaper (currently for KDE)",
                         action='store_true')
 
     logger_group = parser.add_argument_group("Logger")
@@ -93,6 +95,9 @@ def main():
     if args.level.lower != "info":
         logger.update_level(args.level.upper())
 
+    # Log the args passed
+    logger.debug("args passed: ", str(args))
+
     if args.clear_cache:
         clear_cache()
         exit(0)
@@ -104,7 +109,7 @@ def main():
     if args.remove_id:
         blacklist = Blacklist(args.remove_id).remove_blacklist()
         exit(0)
-    
+
     wall = Wall(photo_id=args.id, random=args.random, search=args.search)
 
     # Get the wallpaper setter
@@ -118,7 +123,8 @@ def main():
     if args.dir is None:
         args.dir = "~/.cache/QuickWall"
 
-    set_paper = SetPaper(paper_list, setter, args.dir, args.disable_blacklist)
+    set_paper = SetPaper(paper_list, setter, args.dir,
+                         args.disable_blacklist, disable_theme=args.disable_theme)
     set_paper.do()
 
 
