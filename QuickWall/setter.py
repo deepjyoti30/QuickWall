@@ -54,6 +54,7 @@ class WallSetter:
     def _select_setter(self):
         """Select the wallpaper setter."""
         if self.setter_type == "auto":
+            logger.debug("Determining setter automatically")
             self.setter_type = self._detect_setter()
 
         try:
@@ -67,9 +68,12 @@ class WallSetter:
         """
         logger.info("Using {} as wallpaper setter".format(self.setter_type))
 
-        if (self.lockscreen and self.setter_type in LockscreenCompatibleSetters):
-            return self.setter(True)
-        else:
-            logger.warning("--set-lockscreen not available for the current wallpaper setter")
+        # Check if the current setter can set lockscreen wall
+        CAN_SET_LOCKSCREEN = self.setter_type in LockscreenCompatibleSetters
 
-        return self.setter()
+        if self.lockscreen and not CAN_SET_LOCKSCREEN:
+            logger.warning(
+                "Current setter cannot be used to set lockscreen wallpapers")
+
+        return self.setter(CAN_SET_LOCKSCREEN) if \
+            CAN_SET_LOCKSCREEN else self.setter()

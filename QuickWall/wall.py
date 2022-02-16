@@ -18,14 +18,15 @@ class Wall:
     dw_link: Download link of the image
     unique_id: ID to save the image
     """
+
     def __init__(
-                self,
-                photo_id,
-                random=None,
-                search=None
-            ):
+        self,
+        photo_id,
+        random=None,
+        search=None
+    ):
         self.s_term = None
-        self._acces_key = sub(r'\n|"', '', requests.get("https://deepjyoti30server.herokuapp.com/key").text)
+        self._acces_key = "15bcea145de0b041ec8d3b16bf805e232c83cf52d569a06708aa51f33a4f14f4"
         self._URL = "https://api.unsplash.com/photos/"
         self._URL_list = []
         self.random = random
@@ -37,9 +38,9 @@ class Wall:
         """Build the URL based on the passed args."""
 
         self.params = {
-                    'client_id': self._acces_key,
-                    'per_page' : 30, 
-                    }
+            'client_id': self._acces_key,
+            'per_page': 30,
+        }
 
         if self.id:
             logger.info("Adding ID to URL")
@@ -72,11 +73,11 @@ class Wall:
         unique_id = entity['id']
 
         self._URL_list.append({
-                                'dw_link': dw_link,
-                                'unique_id': unique_id,
-                                'desc': desc,
-                                'name': name
-                              })
+            'dw_link': dw_link,
+            'unique_id': unique_id,
+            'desc': desc,
+            'name': name
+        })
 
     def _get_paper(self):
         """
