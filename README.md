@@ -4,7 +4,6 @@
     <img src="qw.gif" style="border-radius: 4px !important;">
 </div>
 
-
 <div align="center">
 <br/>
 
@@ -20,26 +19,25 @@
 
 It detects your DE or WM, gets wallpapers from **Unsplash** and sets them using either your choice of wallpaper setter or by **nitrogen**. Not enough? It can also change your theme based on the wallpapers that it gets, thanks to [pywal](https://github.com/dylanaraps/pywal).
 
-
 ## Installation
 
-* It is available in Pypi
+- It is available in Pypi
 
 ```sh
 pip3 install QuickWall
 ```
 
-* Available in AUR [here](https://aur.archlinux.org/packages/quickwall/)
+- Available in AUR [here](https://aur.archlinux.org/packages/quickwall/)
 
 ```sh
 yay -S quickwall
 ```
 
-> **NOTE**: The directory is changed from ```~/.QuickWall``` to ```~/.cache/QuickWall```. Early users can use ```--migrate``` option to move their data.
+> **NOTE**: The directory is changed from `~/.QuickWall` to `~/.cache/QuickWall`. Early users can use `--migrate` option to move their data.
 
 ### OR
 
-* Run the following command in the root directory to install QuickWall.
+- Run the following command in the root directory to install QuickWall.
 
 ```sh
 python setup.py install
@@ -52,43 +50,51 @@ python setup.py install
 1. Python 3.6+
 2. Currently supported wallpaper setters
 
-    - [nitrogen](https://github.com/l3ib/nitrogen)
-    - [feh](https://github.com/derf/feh)
-    - [kde](https://github.com/KDE/plasma-desktop)
-    - [xfce](https://www.xfce.org/)
-    - [gnome/unity](https://www.gnome.org/)
+   - [nitrogen](https://github.com/l3ib/nitrogen)
+   - [feh](https://github.com/derf/feh)
+   - [kde](https://github.com/KDE/plasma-desktop)
+   - [xfce](https://www.xfce.org/)
+   - [gnome/unity](https://www.gnome.org/)
 
 > **NOTE**: These dependencies in linux can be installed in other variants.  
-> For *arch linux*, you can use **pacman** package manager accordingly.
+> For _arch linux_, you can use **pacman** package manager accordingly.
 
 ## Usage
 
 ```console
-usage: QuickWall [-h] [--version] [--clear-cache] [--setter SETTER] [-d]
+usage: quickwall [-h] [--version] [--clear-cache] [--setter SETTER] [-d] [-t]
                  [--remove-id ID] [--dir DIR] [--id ID] [--random]
                  [--search TERM] [--migrate] [--set-lockscreen]
+                 [--level LEVEL] [--list-level]
 
-QuickWall - Quickly set latest wallpapers from Unsplash directly from
-the commandline.
+QuickWall - Quickly set latest wallpapers from Unsplash directly from the
+commandline.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   --version             show the program version number and exit
   --clear-cache         Clear the cache from the cache folder
                         (~/.cache/QuickWall)
-  --setter SETTER       Wallpaper setter to be used. Currently supported
-                        ones: nitrogen, feh, xfce, kde, gnome, unity
-                        (default: nitrogen)
+  --setter SETTER       Wallpaper setter to be used. Currently supported ones:
+                        nitrogen, feh, xfce, kde, gnome, unity (default: auto)
   -d, --disable-blacklist
                         Disable adding the image to blacklisted ones.
+  -t, --disable-theme   Disable setting a colorscheme extracted from the
+                        wallpaper
   --remove-id ID        Remove the passed ID from the blacklist.
   --dir DIR             Directory to download the wallpapers
   --id ID               Get a photo by its ID.
   --random              Get random wallpapers.
   --search TERM         Show wallpapers based on the passed term
-  --migrate             ONLY FOR EARLY USERS. Move the files from
-                        ~/.QuickWall to ~/.cache/QuickWall.
+  --migrate             ONLY FOR EARLY USERS. Move the files from ~/.QuickWall
+                        to ~/.cache/QuickWall.
   --set-lockscreen      Set lockscreen wallpaper (currently for KDE)
+
+Logger:
+  --level LEVEL         The level of the logger that will be used while
+                        verbosing. Use `--list-level` to check available
+                        options.
+  --list-level          List all the available logger levels.
 
 ```
 
